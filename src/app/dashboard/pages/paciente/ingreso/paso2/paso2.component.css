@@ -1,0 +1,28 @@
+/*LE QUITA EL COLOR DE FONTO A LA BARRA QUE SE DESPLAZA*/
+::ng-deep .p-slider .p-slider-range {
+  background-color: transparent !important;
+}
+
+.agrandar-div {
+  transition: transform 0.3s ease;
+}
+
+.agrandar-div:hover {
+  transform: scale(1.20);
+}
+
+.my-confirm-dialog {
+  background-color: white;
+}
+
+.my-confirm-dialog .ui-dialog-content {
+  background-color: white !important; 
+}
+
+
+.custom-confirm-dialog .p-confirm-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

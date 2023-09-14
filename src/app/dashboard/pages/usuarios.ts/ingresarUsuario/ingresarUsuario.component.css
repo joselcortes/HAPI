@@ -1,0 +1,58 @@
+
+.tamanio-input {
+  height: 3rem;
+  max-width: 20rem;
+}
+
+.div-inputs{
+  position: relative;
+  top: 3rem;
+}
+
+.content form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details .input-box{
+  margin-bottom: 15px;
+  margin-bottom: 1.2rem;
+  width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box input{
+  height: 45px;
+  width: 85%;
+  outline: none;
+  font-size: 16px;
+  margin-top: 0.6rem;
+  border-radius: 5px;
+}
+
+.details{
+  margin-bottom: 0.2rem;
+}
+
+
+.custom-shape-divider-top-1688606640 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1688606640 svg {
+  position: relative;
+  display: block;
+  width: calc(292% + 1.3px);
+  height: 121px;
+}
+
+.custom-shape-divider-top-1688606640 .shape-fill {
+  fill: #26617f;
+}
+
+

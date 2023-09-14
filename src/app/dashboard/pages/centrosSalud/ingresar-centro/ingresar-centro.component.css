@@ -1,0 +1,110 @@
+
+.tamanio-input {
+  height: 3rem;
+  max-width: 20rem;
+}
+
+.div-inputs{
+  position: relative;
+  top: 3rem;
+}
+
+.content form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details .input-box{
+  margin-bottom: 15px;
+  margin-bottom: 1.2rem;
+  width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box input{
+  height: 45px;
+  width: 85%;
+  outline: none;
+  font-size: 16px;
+  margin-top: 0.6rem;
+  border-radius: 5px;
+}
+
+.details{
+  margin-bottom: 0.2rem;
+}
+
+
+.custom-shape-divider-top-1688606640 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1688606640 svg {
+  position: relative;
+  display: block;
+  width: calc(292% + 1.3px);
+  height: 121px;
+}
+
+.custom-shape-divider-top-1688606640 .shape-fill {
+  fill: #26617f;
+}
+
+.carcasa-imagen {
+  margin: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  max-height: 200px;
+
+}
+
+.select-comuna {
+  margin: 7px;
+}
+
+.archivo-imagen {
+  size: 50px;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  }
+  /* ESTILO DEL INPUT*/
+  .upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 45px;
+  opacity: 0;
+    .boton-standar-rw:hover{
+      color: white;
+      background-color: rgb(58, 86, 245);
+    }
+  }
+  /* ESTILO DEL BOTÓN */
+  .boton-standar-rw{
+  margin: 50px;
+  background-color: white;
+  color: rgb(58, 86, 245);
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid rgb(58, 86, 245);
+  transition: all 0.3s ease 0s;
+  width: 12em;
+  padding: 10px;
+  }
+  /* ESTILO DEL BOTÓN CON HOVER DE MOUSE */
+  .boton-standar-rw:hover{
+    color: white;
+    background-color: rgb(58, 86, 245);
+  }
+

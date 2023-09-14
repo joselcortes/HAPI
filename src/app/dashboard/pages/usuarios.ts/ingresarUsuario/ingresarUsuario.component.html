@@ -1,0 +1,62 @@
+<div class="stepsdemo-content">
+
+  <p-card >
+    <div >
+      <h3 style="color: #0b65a1de; font-weight: bold; text-align: center;
+       position: relative; margin-bottom: 3rem; text-shadow: 2px 2px 2px rgba(12, 110, 152, 0.123);">
+        Ingreso de nuevo usuario</h3>
+    </div>
+
+    <div class="container-fluid" style="height: 25rem; position: relative; left: 2rem;">
+      <div class="content">
+        <form [formGroup]="form">
+          <div class="user-details">
+            <div class="col">
+              <label for="inputEmail4" class="form-label">RUN - PASAPORTE</label>
+              <div class="input-group" style="max-width: 21.9rem; height: 3rem">
+                <input type="text" class="form-control" id="inputEmail4" placeholder="xxxxxxxx-x"
+                  formControlName="rutProfesional" maxlength="10" minlength="9" id="rut">
+                <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" style="height: 3rem;"
+                  (click)="registrosBaseDeDatos()"></button>
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">NOMBRE USUARIO</span>
+              <input type="text" class="form-control" formControlName="nombreProfesional">
+            </div>
+            <div class="input-box">
+              <span class="details">CONTRASEÑA</span>
+              <!-- <p-password [(ngModel)]="value" [toggleMask]="true" styleClass="custom-p-password" formControlName="contrasenaProfesional"></p-password> -->
+              <input type="password" class="form-control" formControlName="contrasenaProfesional">
+            </div>
+            <div class="input-box">
+              <span class="details">CARGO</span>
+              <input type="text" class="form-control" formControlName="cargoProfesional">
+            </div>
+            <div class="input-box">
+              <span class="details">CENTRO ASISTENCIAL</span>
+              <select  class="form-select" aria-label="Default select example" style="max-width: 85%;height: 3rem;"
+                formControlName="centroProfesional">
+                <option  *ngFor="let item of centros" [value]="item.id_centros_salud">{{item.nombre_centro_salud}}</option>
+              </select>
+            </div>
+            <div class="input-box">
+              <span class="details">TIPO DE USUARIO</span>
+              <select class="form-select" aria-label="Default select example" style="max-width: 85%; height: 3rem;"
+                formControlName="rolProfesional">
+                <option value="1">ADMINISTRADOR</option>
+                <option value="2">PROFESIONAL DE SALUD</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="button d-flex justify-content-center">
+            <button type="submit" (click)="guardar()" class="btn btn-primary"
+              style="width: 80%; height: 2.7rem ;position: relative; margin-left: -4rem; top: 3rem;">GUARDAR</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

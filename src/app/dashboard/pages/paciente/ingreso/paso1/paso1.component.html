@@ -1,0 +1,235 @@
+<p-toast></p-toast>
+<div class="stepsdemo-content" style="max-height: 44rem;">
+  <p-card>
+    <form [formGroup]="form" (ngSubmit)="guardarInformacionPacienteFormulario1()">
+      <!--FORMULARIO DATOS PACIENTE-->
+      <div class="container-fluid" style="max-height: 39rem;">
+        <div class="row" style="margin-bottom: 1rem;">
+          <div class="row g-3" style="position: relative; top: -2rem; left: 0.2rem;">
+            <div class="col">
+              <label for="inputEmail4" class="form-label">RUN - PASAPORTE</label>
+              <div class="input-group" style="max-width: 13rem; height: 2.7rem">
+                <input type="text" class="form-control" id="inputEmail4" placeholder="xxxxxxxx-x"
+                  formControlName="runPasaportePaciente" maxlength="10" minlength="9" id="rut">
+                <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" style="height: 2.7rem;"
+                  (click)="registrosBaseDeDatos()"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3" style="position: relative; top:-2.9rem;">
+            <div class="col" style="position: relative; left: 0.2rem;">
+              <label for="inputPassword4" class="form-label">NOMBRES</label>
+              <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                formControlName="nombresPaciente">
+            </div>
+
+            <div class="col" style="position: relative; left: 0.3rem;">
+              <label for="inputEmail4" class="form-label">APELLIDO PATERNO</label>
+              <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                formControlName="apellidoPaternoPaciente">
+            </div>
+
+            <div class="col" style="position: relative; left: 0.4rem;">
+              <label for="inputPassword4" class="form-label">APELLIDO MATERNO</label>
+              <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                formControlName="apellidoMaternoPaciente">
+            </div>
+
+            <div class="col" style="position: relative; left: 0.5rem;">
+              <label for="inputEmail4" class="form-label">NOMBRE SOCIAL</label>
+              <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                formControlName="nombreSocialPaciente">
+            </div>
+
+            <div class="col">
+              <label for="inputPassword4" class="form-label">PRONOMBRE</label>
+              <input type="text" maxlength="6" class="form-control" id="inputPassword4" id="tamanio-input"
+                formControlName="pronombrePaciente">
+            </div>
+          </div>
+
+          <div class="row g-3" style="position: relative; top: -4rem; margin-bottom: -4rem; left: 0rem;">
+            <div class="col" style="position: relative; left: -0.4rem;">
+              <label for="inputPassword4" class="form-label"
+                style="max-width: 10.7rem; position: relative; left: 0.5rem;">NÚMERO TELEFONICO</label>
+              <div class="p-inputgroup" style="position: relative; left: 0.5rem;">
+                <span class="p-inputgroup-addon">+56</span>
+                <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                  formControlName="numeroTelefonicoPaciente" mask="(+569) 99999999" maxlength="9"
+                  style="max-width: 9.9rem;">
+              </div>
+            </div>
+
+            <div class="col" style="position: relative; left: 0.2rem;">
+              <label for="inputPassword4" class="form-label">DOMICILIO</label>
+              <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                formControlName="domicilioPaciente">
+            </div>
+
+            <div class="col" style="position: relative; left: 0.3rem;">
+              <label for="inputEmail4" class="form-label" style="font-size: 1rem;">FECHA DE NACIMIENTO</label>
+              <p-calendar [showIcon]="true" class="p-calendar" placeholder="" [showOnFocus]="false"
+                [style]="{ 'max-width': '12.7rem', 'width':'12.7rem'}" formControlName="fechaNacimientoPaciente"
+                id="fechaNacimientoPaciente" dateFormat="yy-mm-dd" ></p-calendar>
+            </div>
+
+            <div class="col" style="position: relative; left: 0.3rem;">
+              <label for="inputPassword4" class="form-label">EDAD</label>
+              <input type="number" class="form-control" id="edadPaciente" id="tamanio-input"
+                formControlName="edadPaciente"
+                oninput="javascript: if (this.value.length > 2) this.value = this.value.slice(0, 2);">
+            </div>
+
+            <div class="col">
+            </div>
+          </div>
+
+          <br><br><br>
+          <!--PROGRESS-BAR-->
+          <div *ngIf="cargandoDatos">
+            <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+          </div>
+          <br>
+
+          <p-tabView>
+            <p-tabPanel header="ADULTO RESPONSABLE" style="position: relative; top: 2rem; left: -1rem;">
+              <div class="row g-3">
+                <div class="col">
+                  <label for="inputEmail4" class="form-label">RUN - PASAPORTE</label>
+                  <div class="input-group" style="max-width: 13rem; height: 2.7rem">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="xxxxxxxx-x"
+                      formControlName="runPasaporteResponsable" maxlength="10">
+                    <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" style="height: 2.7rem;"
+                      (click)="consultaApiResponsable()"></button>
+                  </div>
+                </div>
+
+                <div class="col" style="position: relative; left: 0.5rem;">
+                  <label for="inputPassword4" class="form-label">NOMBRES</label>
+                  <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                    formControlName="nombresResponsable">
+                </div>
+
+                <div class="col" style="position: relative; left: 0.9rem;">
+                  <label for="inputEmail4" class="form-label">APELLIDO PATERNO</label>
+                  <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                    formControlName="apellidoPaternoResponsable">
+                </div>
+
+                <div class="col" style="position: relative; left: 1.3rem;">
+                  <label for="inputPassword4" class="form-label">APELLIDO MATERNO</label>
+                  <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                    formControlName="apellidoMaternoResponsable">
+                </div>
+
+                <div class="col" style="position: relative; left: 1.7rem;">
+                  <label for="inputPassword4" class="form-label">DOMICILIO</label>
+                  <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                    formControlName="domicilioResponsable">
+                </div>
+              </div>
+
+              <div class="row g-3" style="position: relative; top: 1rem;">
+                <div class="col">
+                  <label for="inputPassword4" class="form-label" style="max-width: 10.7rem;">NÚMERO TELEFONICO</label>
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">+56</span>
+                    <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                      formControlName="numeroTelefonicoResponsable" maxlength="9" style="max-width: 9.8rem;">
+                  </div>
+                </div>
+
+                <div class="col" style="position: relative; left: 0.5rem;">
+                  <label for="inputEmail4" class="form-label">FECHA DE NACIMIENTO</label>
+                  <p-calendar [showIcon]="true" [showOnFocus]="false" class="p-calendar"
+                    [style]="{ 'max-width': '12.7rem' }" formControlName="fechaNacimientoResponsable"
+                    id="fechaNacimientoResponsable" dateFormat="yy-mm-dd"></p-calendar>
+                </div>
+
+                <div class="col" style="position: relative; left: 0.9rem;">
+                  <label for="inputPassword4" class="form-label">EDAD</label>
+                  <input type="number" class="form-control" id="edadResponsable" id="tamanio-input"
+                    formControlName="edadResponsable"
+                    oninput="javascript: if (this.value.length > 2) this.value = this.value.slice(0, 2);">
+                </div>
+
+                <div class="col" style="position: relative; left: 1.2rem;">
+                </div>
+                <div class="col" style="position: relative; left: 1.4rem;">
+                </div>
+              </div>
+
+            </p-tabPanel>
+            <p-tabPanel header="ADULTO ACOMPAÑANTE" style="position: relative; top: 2rem; left: -1rem;">
+              <div class="row g-3">
+                <div class="col">
+                  <label for="inputEmail4" class="form-label">RUN - PASAPORTE</label>
+                  <div class="input-group" style="max-width: 13rem; height: 2.7rem">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="xxxxxxxx-x"
+                      formControlName="runPasaporteAcompaniante" maxlength="10">
+                    <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" style="height: 2.7rem;"
+                      (click)="consultaApiAcompaniante()"></button>
+                  </div>
+                </div>
+
+                <div class="col" style="position: relative; left: 0.5rem;">
+                  <label for="inputPassword4" class="form-label">NOMBRES</label>
+                  <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                    formControlName="nombresAcompaniante">
+                </div>
+
+                <div class="col" style="position: relative; left: 0.9rem;">
+                  <label for="inputEmail4" class="form-label">APELLIDO PATERNO</label>
+                  <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                    formControlName="apellidoPaternoAcompaniante">
+                </div>
+
+                <div class="col" style="position: relative; left: 1.3rem;">
+                  <label for="inputPassword4" class="form-label">APELLIDO MATERNO</label>
+                  <input type="text" class="form-control" id="inputPassword4" id="tamanio-input"
+                    formControlName="apellidoMaternoAcompaniante">
+                </div>
+
+                <div class="col" style="position: relative; left: 1.7rem;">
+                  <label for="inputEmail4" class="form-label">PARENTESCO</label>
+                  <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                    formControlName="parentescoAcompaniante">
+                </div>
+              </div>
+
+              <div class="row g-3" style="position: relative; top: 1rem;">
+                <div class="col">
+                  <label for="inputPassword4" class="form-label">NÚMERO TELEFONICO</label>
+                  <div class="p-inputgroup" style="position: relative; left: -0rem;">
+                    <span class="p-inputgroup-addon">+56</span>
+                    <input type="text" class="form-control" id="inputEmail4" id="tamanio-input"
+                      style="max-width: 9.8rem;" formControlName="numeroTelefonicoAcompaniante" maxlength="9"
+                      minlength="9">
+                  </div>
+                </div>
+              </div>
+            </p-tabPanel>
+          </p-tabView>
+        </div>
+      </div>
+
+      <!--BOTONES-->
+      <div class="grid grid-nogutter justify-content-end"
+        style="display: flex; justify-self: end; margin-right: 1.5rem; position: relative; top: 2rem; margin-bottom: 2rem;">
+          <p-button label="Guardar" styleClass="p-button-help" icon="pi pi-save" (onClick)="insertarRegistros()"></p-button>
+          <div style="margin-left: 1rem;"></div> <!-- Espacio de separación de 1rem -->
+          <p-button label="Siguiente" type="submit" type="submit" icon="pi pi-angle-right" iconPos="right"
+            [disabled]="form.invalid"></p-button>
+      </div>
+
+      <!--MODAL CONFIRMACIÓN-->
+      <div class="card flex justify-content-center gap-2 confirm-dialog-container" style="border:none;">
+        <p-toast></p-toast>
+        <p-confirmDialog [style]="{width: '28vw'}" [baseZIndex]="10000" [styleClass]="confirmarGuardar"
+          [acceptLabel]="'Sí'" [rejectLabel]="'No'"></p-confirmDialog>
+      </div>
+
+    </form>
+  </p-card>
+</div>

@@ -1,0 +1,118 @@
+<div class="body">
+
+  <header class="header-container">
+    <span style="color: #024c7e; font-weight: bold; position: absolute; font-size: 2.4rem; left: 2rem; top: 1rem;"><img
+        src="../../../assets/img/icono-hapi.ico" alt="" style="width: 4rem; height: 4rem; top: -3rem; "></span> <span
+      style="font-weight: bold;position: absolute;color: #000000;font-size: 1.4rem; left: 7rem; top: 2rem; letter-spacing: 3px; text-shadow: gray 1px 0px;">Hapi</span>
+
+
+      <div class="logo-container">
+          <img [src]="imagen" alt="fer">
+      </div>
+
+  </header>
+
+  <input type="checkbox" name="" id="menu-toggle">
+
+  <div class="sidebar">
+
+    <div class="sidebar-container" style="box-shadow: rgba(17,17,26,0.1) 2px 6px 18px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style=" width: 100%; ">
+        <path fill="#0099ff" fill-opacity="1"
+          d="M0,32L80,64C160,96,320,160,480,181.3C640,203,800,181,960,160C1120,139,1280,117,1360,106.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
+        </path>
+      </svg>
+      <div class="sidebar-container-inner">
+        <div class="brand">
+          <h2>
+            <span class="lab la--staylinked"></span>
+          </h2>
+        </div>
+
+        <div class="sidebar-avartar">
+          <div style="text-align: center;">
+            <img src="../../../assets/img/icono-usuario.png"
+              style="height: 4rem; width: 4rem; justify-content: center; text-align: center;" alt="">
+          </div>
+          <div>
+            <div style="text-align: center; margin-bottom: 1rem; margin-top: 1rem;">
+
+              <h4>{{usuario.nombre_usuario}}</h4>
+              <small>{{usuario.cargo_profesional_salud}}</small>
+
+            </div>
+            <span class="las la angle-double-down"></span>
+          </div>
+        </div>
+
+        <div class="sidebar-menu">
+          <ul style="text-align: start; position: relative; left: -1rem;">
+            <li style="list-style-type: none;">
+              <a href="" style="text-decoration: none; " class="active">
+                <span class="las la-home" style="color: #396aff; position: relative; top: 0.2rem;"></span>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li style="list-style-type: none;">
+              <a href="paciente" style="text-decoration: none;">
+                <span class="las la-user" style="color: #396aff; position: relative; top: 0.2rem;"></span>
+                <span>Paciente</span>
+              </a>
+            </li>
+            <li style="list-style-type: none;" *ngIf="usuario.roles === 'adminUser'">
+              <a (click)="mostrarLista()" style="text-decoration: none;">
+                <span class="las la-laptop" style="color: #396aff; position: relative; top: 0.2rem;"></span>
+                <span>Administrador</span>
+                <ul *ngIf="mostrarUl" [hidden]="false">
+                  <a href="usuario" style="text-decoration: none;">
+                    <span class="pi pi-user-plus" style="color: #396aff; position: relative; top: 0.2rem; font-size: 1rem;"></span>
+                    <span>Crear Usuario</span>
+                  </a>
+                  <a href="centro" style="text-decoration: none;">
+                    <span class="pi pi-building" style="color: #396aff; position: relative; top: 0.2rem; font-size: 1rem;"></span>
+                    <span>Crear centro de salud</span>
+                  </a>
+                </ul>
+              </a>
+            </li>
+
+            <li style="list-style-type: none;" (click)="cerrarHapi()">
+              <a href="/" style="text-decoration: none;">
+                <span class="las la-sign-out-alt" style="color: rgb(218, 10, 10); position: relative; top: 0.2rem;"></span>
+                <span style="color: rgb(218, 10, 10);">
+                  <button style="background-color: transparent; border: none; position: relative; left: -7px;">
+                    Salir
+                  </button>
+                </span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: relative; top: 18rem;">
+        <path fill="#0099ff" fill-opacity="1"
+          d="M0,32L80,58.7C160,85,320,139,480,154.7C640,171,800,149,960,117.3C1120,85,1280,43,1360,21.3L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+        </path>
+      </svg>
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <section class="dashboard">
+      <div class="dash-content container-fluid" style="position: relative; top: 3rem; margin-bottom: -4rem;">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8"
+            style="display: flex; justify-content: center; align-items: center; min-height: 100vh; position: relative;left: -3.6rem; top: 0rem; ">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</div>
+

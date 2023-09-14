@@ -1,0 +1,92 @@
+
+<div class="p-card card"
+  style=" overflow-x: hidden; left: 3rem; top: 0rem;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-start">
+            <p-button label="Ingresar centro" icon="pi pi-plus" (click)="showDialog()"></p-button>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <input type="text" pinputtext="" placeholder="Buscar" class="p-inputtext form-control" style="width: 18rem;"
+              [(ngModel)]="terminoBusqueda" (ngModelChange)="filtrarDatosPacientes()">
+          </div>
+        </div>
+        <br>
+
+        <div class="row mt-3" >
+          <div class="col-md-12">
+            <p-table class="header table-responsive" [value]="centros" [value]="centrosFiltrados"
+              [paginator]="true" [rows]="5" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '60rem' }"
+              currentPageReportTemplate="">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width:20%; background-color: #01448c1c;">NOMBRE CENTRO</th>
+                  <th style="width:24%; background-color: #01448c1c;">COMUNA</th>
+                  <th style="width:20%; background-color: #01448c1c;">LOGO</th>
+                  <th style="width:4%; background-color: #01448c1c;"></th>
+                  <th style="width:4%; background-color: #01448c1c;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-centros>
+                <tr >
+                  <td>{{ centros.nombre_centro_salud }}</td>
+                  <td>{{ centros.nombre_comuna }}</td>
+                  <td><p-image [src]="centros.img" alt="Image" width="90" height="50" [preview]="true"></p-image></td>
+                  <!-- <td><img class="imagen-logo" [src]="centros.img" alt=""></td> -->
+                  <td>
+                    <button pbutton="" pripple="" type="button" icon="pi pi-user" (click)="eliminarCentro(centros.id_centro_salud, centros.logo)" style="position: relative; left: 0.5rem;"
+                      class="p-element p-ripple p-button-rounded p-button-info p-button-outlined p-button p-component p-button-icon-only">
+                      <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
+                      <span class="p-ink"></span>
+                    </button>
+                  </td>
+                  <td>
+                    <button pbutton="" pripple="" type="button" icon="pi pi-user" (click)="showActualizar(centros.id_centro_salud)" style="position: relative; left: 0.5rem;"
+                      class="p-element p-ripple p-button-rounded p-button-info p-button-outlined p-button p-component p-button-icon-only">
+                      <span class="p-button-icon pi pi-file-edit" aria-hidden="true"></span>
+                      <span class="p-ink"></span>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="resize: none;">
+    <p-dialog header="" [(visible)]="visible" [draggable]="false"
+      [style]="{ 'max-width': '60vw', 'width': '50vw' , 'max-height': '35vw', 'height':'35vw' }">
+      <div >
+        <div>
+          <app-ingresar-centro></app-ingresar-centro>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+
+  <div *ngIf="datosCentro" style="resize: none;">
+    <p-dialog header="" [(visible)]="actualizarvisible" [draggable]="false"
+      [style]="{ 'max-width': '60vw', 'width': '50vw' , 'max-height': '35vw', 'height':'35vw' }">
+      <div >
+        <div>
+          <app-actualizar-centro [datosCentro]="datosCentro"></app-actualizar-centro>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+
+  <div>
+  <p-toast></p-toast>
+  <p-confirmDialog [style]="{width: '28vw'}" [baseZIndex]="10000" [acceptLabel]="'Sí'" [rejectLabel]="'No'"
+    [styleClass]="'my-confirm-dialog'"></p-confirmDialog>
+</div>
+
+
+
+</div>

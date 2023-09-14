@@ -1,0 +1,78 @@
+<!-- <H3 style="position: relative; top: -3rem; color: #0786dae0; left: 5rem;">PACIENTES</H3> -->
+
+<div class="p-card card"
+  style=" overflow-x: hidden; left: 3rem; top: 0rem;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-start">
+            <p-button label="Ingresar usuario" icon="pi pi-plus" (click)="showDialog()"></p-button>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <input type="text" pinputtext="" placeholder="Buscar" class="p-inputtext form-control" style="width: 18rem;"
+              [(ngModel)]="terminoBusqueda" (ngModelChange)="filtrarDatosPacientes()">
+          </div>
+        </div>
+        <br>
+
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <p-table class="header table-responsive" [value]="usuarios" [value]="usuariosFiltrados"
+              [paginator]="true" [rows]="5" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '60rem' }"
+              currentPageReportTemplate="">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width:20%; background-color: #01448c1c;">RUN</th>
+                  <th style="width:24%; background-color: #01448c1c;">NOMBRE USUARIO</th>
+                  <th style="width:20%; background-color: #01448c1c;">CARGO</th>
+                  <th style="width:20%; background-color: #01448c1c;">ROL</th>
+                  <th style="width:16%; background-color: #01448c1c;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-usuarios>
+                <tr>
+                  <td>{{ usuarios.rut_profesional_salud }}</td>
+                  <td>{{ usuarios.nombre_usuario }}</td>
+                  <td>{{ usuarios.cargo_profesional_salud }}</td>
+                  <td>{{ usuarios.roles }}</td>
+                  <td>
+
+                    <button pbutton="" pripple="" type="button" icon="pi pi-user" (click)="eliminarUsuario(usuarios.id_profesional_salud)" style="position: relative; left: 0.5rem;"
+                      class="p-element p-ripple p-button-rounded p-button-info p-button-outlined p-button p-component p-button-icon-only">
+                      <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
+                      <span class="p-ink"></span>
+                    </button>
+
+
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="resize: none;">
+    <p-dialog header="" [(visible)]="visible" [draggable]="false" (onHide)="borrar()"
+      [style]="{ 'max-width': '60vw', 'width': '50vw' , 'max-height': '35vw', 'height':'35vw' }">
+      <div >
+        <div>
+          <router-outlet preserveQueryParams></router-outlet>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+
+  <div>
+  <p-toast></p-toast>
+  <p-confirmDialog [style]="{width: '28vw'}" [baseZIndex]="10000" [acceptLabel]="'Sí'" [rejectLabel]="'No'"
+    [styleClass]="'my-confirm-dialog'"></p-confirmDialog>
+</div>
+
+
+
+</div>

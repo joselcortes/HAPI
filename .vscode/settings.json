@@ -1,0 +1,59 @@
+// {
+//   "editor.codeActionsOnSave": {
+
+//   },
+//   "editor.tokenColorCustomizations": {
+//     "textMateRules": [
+//       {
+//         "scope": [
+//           "string",
+//           "constant.other.color",
+//           "variable.language",
+//           "punctuation.definition.string",
+//           "punctuation.definition.string.begin",
+//           "punctuation.definition.string.end",
+//           "variable.other.object.property",
+//           "variable.other.readwrite",
+//           "variable.other.constant",
+//           "variable.language.this"
+//         ],
+//         "settings": {
+//           // "foreground": "#7c55cb", // Ajusta aquí el color principal de texto que deseas utilizar
+//           // "fontStyle":"bold"
+//         }
+//       },
+//       {
+//         "scope": "comment",
+//         "settings": {
+//           "foreground": "#70c0af85" // Ajusta aquí el color para los comentarios
+//         }
+//       },
+//       {
+//         "scope": "keyword",
+//         "settings": {
+//           "foreground": "#ff537076" // Ajusta aquí el color para las palabras clave
+//         }
+//       },
+//       {
+//         "scope": "entity.name.function",
+//         "settings": {
+//           "foreground": "#08b992", // Ajusta aquí el color para los nombres de funciones
+//           "fontStyle": "italic"
+//         }
+//       },
+//       {
+//         "scope": "support.type",
+//         "settings": {
+//           "foreground": "#d18be2" // Ajusta aquí el color para los tipos de soporte (support types)
+
+//         }
+//       },{
+
+//       }
+//     ]
+//   }
+
+
+// }
+
+

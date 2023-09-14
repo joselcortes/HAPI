@@ -1,0 +1,54 @@
+<div class="actualizar-content">
+
+  <p-card >
+    <div >
+      <h3 style="color: #0b65a1de; font-weight: bold; text-align: center;
+       position: relative; margin-bottom: 3rem; text-shadow: 2px 2px 2px rgba(12, 110, 152, 0.123);">
+       Actualizar centro hospitalario</h3>
+    </div>
+
+    <div class="container-fluid" style="height: 25rem; position: relative; left: 2rem;">
+      <div class="content">
+        <form [formGroup]="form">
+          <div class="user-details">
+            <div class="col">
+              <label for="inputEmail4" class="form-label">NOMBRE CENTRO HOSPIATALARIO</label>
+              <div class="input-group" style="max-width: 21.9rem; height: 3rem">
+                <input type="text" class="form-control" id="inputEmail4"
+                  formControlName="nombre_centro_salud">
+                <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn" style="height: 3rem;"
+                  (click)="registrosBaseDeDatos()"></button>
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">COMUNA</span>
+              <select class="form-select select-comuna" aria-label="Default select example" style="max-width: 85%;height: 3rem;"
+                formControlName="comuna_centro_atencion">
+                <option [value]="item.id_comuna" *ngFor="let item of comunas">{{item.nombre_comuna}}</option>
+              </select>
+            </div>
+
+            <div class="upload-btn-wrapper input-box">
+              <button class="boton-standar-rw">Carga un archivo</button>
+              <input id="imagenMostrada" class="upload-file-buton" type="file" (change)="capturarImagen($event)" accept="image/*" formControlName="logo">
+             </div>
+            <!-- <div class="input-box">
+              <span class="details">ARCHIVO</span>
+              <input class="archivo-imagen" type="file" (change)="capturarImagen($event)" formControlName="cargoProfesional">
+            </div> -->
+
+            <div *ngIf="previsualizacion" class="input-box">
+              <img class="carcasa-imagen" width="80%" [src]="previsualizacion" alt="">
+            </div>
+          </div>
+
+          <div class="button d-flex justify-content-center">
+            <button type="submit" (click)="actualizarCentro()" class="btn btn-primary"
+              style="width: 80%; height: 2.7rem ;position: relative; margin-left: -4rem;">ACTUALIZAR</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

@@ -1,0 +1,28 @@
+#tamanio-input {
+  height: 2.7rem;
+  max-width: 12.7rem;
+}
+
+.custom-button {
+  background-color: #01448c !important;
+}
+
+.custom-splitButton .p-splitbutton-menu {
+  bottom: 100%;
+  transform: translateY(-100%);
+}
+
+:host ::ng-deep .ui-splitbutton .ui-dropdown-panel {
+  bottom: 100% !important;
+  transform: translateY(-100%) !important;
+}
+
+.hidden-submit {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,0 +1,78 @@
+<div class="p-card card" style="border: 0px rgba(192, 191, 191, 0.459) solid; overflow-x: hidden; left: 3rem; top: 0rem;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <br>
+          <div class="row">
+            <div class="col-md-6 d-flex justify-content-start">
+              <p-button label="Nueva Atención" icon="pi pi-plus" (click)="abrirModal()"></p-button>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+              <input type="text" pinputtext="" placeholder="Buscar" class="p-inputtext form-control" style="width: 18rem;"
+                [(ngModel)]="terminoBusqueda" (ngModelChange)="filtrarDatosPacientes()">
+            </div>
+          </div>
+          <br>
+
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <p-table class="header table-responsive" [value]="datosPaciente" [value]="datosPacienteFiltrados"
+                [paginator]="true" [rows]="5" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '60rem' }"
+                currentPageReportTemplate="">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width:13%; background-color: #01448c1c;">RUN</th>
+                    <th style="width:22%; background-color: #01448c1c;">NOMBRES</th>
+                    <th style="width:15%; background-color: #01448c1c;">APELLIDO PATERNO</th>
+                    <th style="width:15%; background-color: #01448c1c;">APELLIDO MATERNO</th>
+                    <th style="width:18%; background-color: #01448c1c;">CENTRO ASISTENCIAL</th>
+                    <th style="width:17%; background-color: #01448c1c; color: transparent;">CONSULTAS</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-datos>
+                  <tr>
+                    <td class="text-center">{{datos.rut_paciente}} <p-tag [ngStyle]="estiloTag" icon="las la-flag"  [severity]="datos.estado_ficha == '1' ? 'success' : 'danger'"></p-tag></td>
+                    <td [ngClass]="{'verde': datos.estado_ficha === '1', 'rojo': datos.estado_ficha === '0'}">
+                      <ng-container *ngIf="datos.nombre_social; else por">
+                        {{ datos.estado_ficha === 0 ? datos.nombre_paciente_historia : datos.nombre_paciente}} ({{datos?.nombre_social}})
+                      </ng-container>
+                      <ng-template #por>
+                        {{ datos.estado_ficha === 0 ? datos.nombre_paciente_historia : datos.nombre_paciente }}
+                      </ng-template>
+                    </td>
+                    <td>{{ datos.estado_ficha === 0 ? datos.apellido_materno_paciente_historia : datos.apellido_materno_paciente}}</td>
+                    <td>{{ datos.estado_ficha === 0 ? datos.apellido_paterno_paciente_historia : datos.apellido_paterno_paciente}}</td>
+                    <td>{{datos.nombre_centro_salud | uppercase }}</td>
+                    <td>
+
+                      <button pbutton="" pripple="" type="button" icon="pi pi-user"
+                        [routerLink]="'/consulta/' + datos.rut_paciente" routerLinkActive="active"
+                        style="position: relative; left: 3rem;"
+                        class="p-element p-ripple p-button-rounded p-button-info p-button-outlined p-button p-component p-button-icon-only">
+                        <span class="p-button-icon pi pi-user" aria-hidden="true"></span>
+                        <span class="p-ink"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="resize: none;">
+      <p-dialog header="" [(visible)]="visible" [draggable]="false" (onHide)="cerrarModal()"
+        [style]="{ 'max-width': '66vw', 'width': '67vw' , 'max-height': '48.6vw' }">
+        <div>
+          <div>
+            <div class="card" [style]="{ 'max-width': '63.5vw', height:'6vw', pointerEvents: 'none'}">
+              <p-toast></p-toast>
+              <p-steps [model]="items" [readonly]="false" routerLinkActiveOptions="{exact:true}"></p-steps>
+            </div>
+            <router-outlet preserveQueryParams></router-outlet>
+          </div>
+        </div>
+      </p-dialog>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="stepsdemo-content">
+  <p-card class="p-col-12 p-lg-8 p-xl-6">
+    <form [formGroup]="form" (ngSubmit)="guardarInformacionPacienteFormulario4()">
+      <div class="form-check form-switch" style="position: relative; top:1.5rem;left: 7rem;">
+        <span style="position: relative; left: 56.5rem; top: 0.2rem;">NO</span>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+          style="position: relative; top: 0.2rem; left: 61rem;" formControlName="checkHabilitarJudializacion">
+        <span style="position: relative; left: 59.6rem; top: 0.2rem;">SI</span>
+      </div>
+      <label for="inputEmail4" class="form-label" style="position: relative; left: 0rem;">JUDICIALIZADO</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3.5"
+        style="resize: none; width: 100%; max-width: 75rem ;position: relative; left: 0rem;"
+        formControlName="textoJudializacion"></textarea>
+      <br>
+      <div class="mb-3">
+        <label for="antecedentesPerinatales" class="form-label">ANTECEDENTES PERINATALES</label>
+        <textarea class="form-control" id="antecedentesPerinatales" rows="3.5"
+          formControlName="textoAntecedentesPerinatales" style="resize: none;"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="antecedentesMorbidosHospitalizaciones" class="form-label">ANTECEDENTES MÓRBIDOS -
+          HOSPITALIZACIONES</label>
+        <textarea class="form-control" id="antecedentesMorbidosHospitalizaciones" rows="3.5"
+          formControlName="textoAntecedentesMorbidosHospitalizaciones" style="resize: none;"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="antecedentesQuirurgicos" class="form-label">ANTECEDENTES QUIRÚRGICOS</label>
+        <textarea class="form-control" id="antecedentesQuirurgicos" rows="3.5"
+          formControlName="textoAntecedentesQuirurgicos" style="resize: none;"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="alergiasFocos" class="form-label">ALERGIAS - FOCOS</label>
+        <textarea class="form-control" id="alergiasFocos" rows="3.5" formControlName="textoAlergiasFocos"
+          style="resize: none;"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="inmunizacionesSegunPNI" class="form-label">INMUNIZACIONES SEGÚN PNI</label>
+        <textarea class="form-control" id="inmunizacionesSegunPNI" rows="3.5"
+          formControlName="textoInmunizacionesSegunPNI" style="resize: none;"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="funcionalidadGenital" class="form-label">FUNCIONALIDAD GENITAL</label>
+        <textarea class="form-control" id="funcionalidadGenital" rows="3.5" formControlName="textoFuncionalidadGenital"
+          style="resize: none;"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="antecedentesFamiliares" class="form-label">ANTECEDENTES FAMILIARES (ENFERMEDADES CON POTENCIALES
+          RIESGOS)</label>
+        <textarea class="form-control" id="antecedentesFamiliares" rows="3.5"
+          formControlName="textoAntecedentesFamiliares" style="resize: none;"></textarea>
+      </div>
+
+      <br>
+
+      <!--BOTONES-->
+      <div class="grid grid-nogutter justify-content-between"
+        style="display: flex; justify-self: end; margin-right: 1.5rem; position: relative; top: 0.8rem;">
+        <p-button label="Regresar" (onClick)="prevPage()" icon="pi pi-angle-left"
+          styleClass="p-button-secondary"></p-button>
+        <div style="display: flex; align-items: center; margin-left: 1rem;">
+          <p-button label="Guardar" styleClass="p-button-help" icon="pi pi-save"
+            (onClick)="insertarRegistros()"></p-button>
+          <div style="width: 1rem;"></div>
+          <p-button label="Finalizar Consulta" styleClass="p-button-success" icon="pi pi-check-circle" iconPos="right"
+            (onClick)="finalizarConsulta()"></p-button>
+        </div>
+      </div>
+
+      <!--MODAL CONFIRMACIÓN-->
+      <div class="card flex justify-content-center gap-2 confirm-dialog-container"
+        style="border:none; background-color: transparent;">
+        <p-toast></p-toast>
+        <p-confirmDialog [style]="{width: '28vw'}" [baseZIndex]="10000" [acceptLabel]="'Sí'" [rejectLabel]="'No'"
+          [styleClass]="'my-confirm-dialog'"></p-confirmDialog>
+      </div>
+
+    </form>
+  </p-card>
+</div>

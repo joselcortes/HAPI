@@ -1,0 +1,154 @@
+<div class="stepsdemo-content" style="max-height: 58rem;">
+  <p-card>
+    <form [formGroup]="form" (ngSubmit)="guardarInformacionPacienteFormulario2()">
+      <div class="container-fluid" style="min-height: 34rem;">
+        <div class="row">
+          <div class="row g-3" style="position: relative; top: -2rem;">
+            <div class="col">
+              <label htmlFor="username" id="espacio-label-input" style="margin-bottom: 0.5rem;">GENERO</label>
+              <select class="form-select" aria-label="Default select example" style="height: 2.6rem;"
+                formControlName="generoSeleccionado">
+                <option selected> **</option>
+                <option value="1">MASCULINO</option>
+                <option value="2">FEMENINO</option>
+                <option value="3">PANGÉNERO</option>
+                <option value="4">BIGÉNERO</option>
+                <option value="5">GÉNERO FLUIDO</option>
+                <option value="6">AGÉNERO</option>
+              </select>
+            </div>
+
+            <div class="col" style="position: relative; left: 0.4rem;">
+              <label htmlFor="username" id="espacio-label-input"
+                style="margin-bottom: 0.5rem; max-width: 15rem;">ORIENTACIÓN SEXUAL</label>
+              <select class="form-select" aria-label="Default select example" style="height: 2.6rem;"
+                formControlName="orientacionSexualSeleccionada">
+                <option selected>**</option>
+                <option value="1">HETEROSEXUAL</option>
+                <option value="2">HOMOSEXUAL</option>
+                <option value="3">BISEXUAL</option>
+                <option value="4">PANSEXUAL</option>
+              </select>
+            </div>
+
+            <div class="col" style="position: relative; left: 0.7rem;">
+              <label for="inputEmail4" class="form-label">INICO DE TRANSICIÓN</label>
+              <p-calendar [showIcon]="true" [showOnFocus]="false" class="p-calendar" [style]="{ width: '12.7rem' }"
+                formControlName="inicioTransicion" dateFormat="yy-mm-dd"></p-calendar>
+            </div>
+
+            <div class="col" style="position: relative; left: 0.5rem;">
+              <label for="inputEmail4" class="form-label">TIEMPO DE LATENCIA</label>
+              <p-calendar [showIcon]="true" [showOnFocus]="false" class="p-calendar" [style]="{ width: '12.7rem' }"
+                formControlName="tiempoLatencia" dateFormat="yy-mm-dd"></p-calendar>
+            </div>
+
+            <div class="col" style="position: relative; left: 0.5rem;">
+            </div>
+          </div>
+
+          <div class="row g-3 agrandar-div" style="position: relative; top: -2rem;">
+            <div class="col-md-3">
+              <img src="../../../../../../assets/img/adolecente-hombre.png" alt="Icono hombre" class="rounded float-end"
+                style="height: 9.4rem; margin-left: 7rem; position: relative; top: -0.5rem;">
+            </div>
+            <div class="col-md-6" style="position: relative; top: 5rem; " contenteditable="false">
+              <input type="text" class="form-control" id="inputRange" style="background-color: white;" disabled>
+              <p-slider class="w-full" [formControl]="valorControlRangoAutopercepcion"></p-slider>
+            </div>
+            <div class="col-md-3">
+              <img src="../../../../../../assets/img/adolecente-mujer.png" alt="Icono hombre"
+                class="rounded float-start" style="height: 8.5rem; margin-left: 0rem;">
+            </div>
+          </div>
+
+          <div class="row g-3" style="position: relative; top: -3rem;">
+            <div class="col-md-9">
+              <label for="inputEmail4" class="form-label">USO DE PRENDAS</label>
+              <div class="form-check form-check-inline" style="position: relative; top: 3rem; left: -7rem;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                  formControlName="usoBinder">
+                <label class="form-check-label" for="inlineCheckbox1">BINDER</label>
+              </div>
+              <div class="form-check form-check-inline" style="position: relative; top: 3rem; left: -6rem;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
+                  formControlName="usoTucking">
+                <label class="form-check-label" for="inlineCheckbox2">TUCKING</label>
+              </div>
+              <div class="form-check form-check-inline" style="position: relative; top: 3rem; left: -5rem;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option3"
+                  formControlName="usoPacking">
+                <label class="form-check-label" for="inlineCheckbox2">PACKING</label>
+              </div>
+              <div class="form-check form-check-inline" style="position: relative; top: 3rem; left: -4rem;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option4"
+                  formControlName="usoOtro">
+                <label class="form-check-label" for="inlineCheckbox2">OTRO</label>
+              </div>
+              <div class="form-check form-check-inline" style="position: relative; top: 3rem; left: -3rem;">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option5"
+                  formControlName="usoNinguno">
+                <label class="form-check-label" for="inlineCheckbox2">NO UTILIZA</label>
+              </div>
+            </div>
+
+            
+            <div class="col-md-3" style="position: relative; left: 2rem;">
+              <label for="inputEmail4" class="form-label">APOYO FAMILIAR</label>
+              <div style="position: relative; left: 0rem; top: 1rem;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="apoyoFamiliar" id="inlineRadio1" value="si"
+                    formControlName="apoyoFamiliar">
+                  <label class="form-check-label" for="inlineRadio1">SI</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="apoyoFamiliar" id="inlineRadio2" value="no"
+                    formControlName="apoyoFamiliar">
+                  <label class="form-check-label" for="inlineRadio2">NO</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row g-3">
+            <div class="col-md-12" style="position: relative; top: -4rem; left: -1rem;">
+              <div class="form-check form-switch" style="position: relative; top: 1.5rem; left: 6rem;">
+                <span style="position: relative; left: 56.5rem; top: 0.2rem;">NO</span>
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                  style="position: relative; top: 0.2rem; left: 61rem;" formControlName="checkHabilitarCampoDisforia">
+                <span style="position: relative; left: 59.6rem; top: 0.2rem;">SI</span>
+              </div>
+              <label for="inputEmail4" class="form-label"
+                style="position: relative; left: 1rem; margin-bottom: 1rem;">ELEMENTOS DE
+                DISFORIA</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                style="resize: none; width: 100%; max-width: 74rem ;position: relative; left: 1rem;"
+                formControlName="textoElementosDisforia"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--MODAL CONFIRMACIÓN-->
+      <div class="card flex justify-content-center gap-2 confirm-dialog-container" style="border:none;">
+        <p-toast></p-toast>
+        <p-confirmDialog [style]="{width: '28vw'}" [baseZIndex]="10000" [styleClass]="confirmarGuardar"
+          [acceptLabel]="'Sí'" [rejectLabel]="'No'"></p-confirmDialog>
+      </div>
+
+      <!--BOTONES-->
+      <div class="grid grid-nogutter justify-content-between"
+        style="display: flex; justify-self: end; margin-right: 1.5rem; position: relative; top: 0.8rem;">
+        <p-button label="Regresar" (onClick)="prevPage()" icon="pi pi-angle-left"
+          styleClass="p-button-secondary"></p-button>
+        <div style="display: flex; align-items: center;">   
+          <p-button label="Guardar" styleClass="p-button-help" icon="pi pi-save" (onClick)="insertarRegistros()"></p-button>
+          <div style="margin-left: 1rem;"></div>
+          <p-button label="Siguiente" type="submit" icon="pi pi-angle-right" iconPos="right" [disabled]="form.invalid"></p-button>
+        </div>
+      </div>
+
+    </form>
+  </p-card>
+</div>

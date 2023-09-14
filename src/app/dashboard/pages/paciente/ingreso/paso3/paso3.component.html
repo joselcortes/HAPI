@@ -1,0 +1,169 @@
+<div class="stepsdemo-content" style="max-height: 58rem;">
+  <p-card>
+    <form [formGroup]="form" (ngSubmit)="guardarInformacionPacienteFormulario3()">
+      <div class="container-fluid" style="height: 38rem;">
+        <div class="row">
+          <div class="row g-3" style="position: relative; top: -2rem;">
+            <div class="col-md-6">
+              <div class="form-check form-switch" style="position: relative; top: 1.5rem; left: 6rem;">
+                <span style="position: relative; left: 19.5rem; top: 0.2rem;">NO</span>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkHabilitarCampoFarmaco"
+                  style="position: relative; top: 0.2rem; left: 24rem;" formControlName="checkHabilitarCampoFarmaco">
+                <span style="position: relative; left: 22.6rem; top: 0.2rem;">SI</span>
+              </div>
+              <label for="inputEmail4" class="form-label" style="margin-bottom: 1rem;">FARMACOS</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                style="resize: none; max-width: 100%;" formControlName="textoFarmacos"></textarea>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-check form-switch" style="position: relative; top: 1.5rem; left: 6rem;">
+                <span style="position: relative; left: 19.5rem; top: 0.2rem;">NO</span>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkHabilitarCampoApoyoEscolaridad"
+                  style="position: relative; top: 0.2rem; left: 24rem;"
+                  formControlName="checkHabilitarCampoApoyoEscolaridad">
+                <span style="position: relative; left: 22.6rem; top: 0.2rem;">SI</span>
+              </div>
+              <label for="inputEmail4" class="form-label" style="margin-bottom: 1rem;">APOYO
+                ESCOLARIDAD</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                style="resize: none; max-width: 100%;" formControlName="textoApoyoEscolaridad"></textarea>
+            </div>
+          </div>
+
+          <div class="row g-3" style="position: relative; top: -4rem; margin-bottom: 2rem;">
+            <div class="col-md-6">
+              <div class="form-check form-switch" style="position: relative; top: 1.5rem; left: 6rem;">
+                <span style="position: relative; left: 19.5rem; top: 0.2rem;">NO</span>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkHabilitarCampoDrogas"
+                  style="position: relative; top: 0.2rem; left: 24rem;" formControlName="checkHabilitarCampoDrogas">
+                <span style="position: relative; left: 22.6rem; top: 0.2rem;">SI</span>
+              </div>
+              <label for="inputEmail4" class="form-label" style="margin-bottom: 1rem;">DROGAS</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                style="resize: none; max-width: 100%;" formControlName="textoDrogas"></textarea>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+
+          <div class="row g-3" style="position: relative; top: -5rem;">
+            <div class="col">
+              <label for="inputEmail4" class="form-label">CONTROLES CON EQUIPO DE SALUD MENTAL</label>
+              <div style="position: relative; left: 4.5rem;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="controlEquipoSaludMental" id="inlineRadio1"
+                    value="si" formControlName="controlEquipoSaludMental">
+                  <label class="form-check-label" for="inlineRadio1">SI</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="controlEquipoSaludMental" id="inlineRadio2"
+                    value="no" formControlName="controlEquipoSaludMental">
+                  <label class="form-check-label" for="inlineRadio2">NO</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col" style="position: relative; left: 6rem;">
+              <label for="inputEmail4" class="form-label">PSICOTERAPIA</label>
+              <div style="position: relative; left: 0rem; top: 1.5rem;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="psicoterapia" id="inlineRadio1" value="si"
+                    formControlName="psicoterapia">
+                  <label class="form-check-label" for="inlineRadio1">SI</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="psicoterapia" id="inlineRadio2" value="no"
+                    formControlName="psicoterapia">
+                  <label class="form-check-label" for="inlineRadio2">NO</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col" style="position: relative; left: 0rem;">
+              <label for="inputEmail4" class="form-label" style="margin-left: 2rem;">EVALUACIÓN
+                PSIQUIATRICA</label>
+              <div style="position: relative; top: 1.5rem;">
+                <div class="form-check form-check-inline" style="margin-left: 5rem;">
+                  <input class="form-check-input" type="radio" name="evaluacionPsiquiatrica" id="inlineRadio1"
+                    value="si" formControlName="evaluacionPsiquiatrica">
+                  <label class="form-check-label" for="inlineRadio1">SI</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="evaluacionPsiquiatrica" id="inlineRadio2"
+                    value="no" formControlName="evaluacionPsiquiatrica">
+                  <label class="form-check-label" for="inlineRadio2">NO</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col" style="position: relative; left: 0.4rem;">
+              <label for="inputEmail4" class="form-label">DIAGNOSTICOS PSIQUIATRICOS</label>
+              <div style="position: relative; top: 1.5rem; left: 3.5rem;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="diagnosticosPsiquiatricos" id="inlineRadio1"
+                    value="si" formControlName="diagnosticosPsiquiatricos">
+                  <label class="form-check-label" for="inlineRadio1">SI</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="diagnosticosPsiquiatricos" id="inlineRadio2"
+                    value="no" formControlName="diagnosticosPsiquiatricos">
+                  <label class="form-check-label" for="inlineRadio2">NO</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-3" style="position: relative; top: -4rem;">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-4">
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3" style="position: relative; top: -5.6rem; ">
+          <div class="col-md-3">
+            <label for="inputEmail4" class="form-label" style="margin-bottom: 1rem;">HABITOS
+              ALIMENTICIOS</label>
+            <select class="form-select" aria-label="Default select example" style="height: 2.6rem;"
+              formControlName="alimentacionSeleccionada">
+              <option selected> **</option>
+              <option value="1">VEGANA</option>
+              <option value="2">VEGETARIANA</option>
+              <option value="3">OVO-LÁCTEO-VEGETARIANO</option>
+              <option value="4">PECETARIANO</option>
+              <option value="5">SIN RESTRICCIONES</option>
+            </select>
+          </div>
+          <div class="col-md-9">
+          </div>
+        </div>
+      </div>
+
+      <!--MODAL CONFIRMACIÓN-->
+      <div class="card flex justify-content-center gap-2 confirm-dialog-container"
+        style="border:none; background-color: transparent;">
+        <p-toast></p-toast>
+        <p-confirmDialog [style]="{width: '28vw'}" [baseZIndex]="10000" [acceptLabel]="'Sí'" [rejectLabel]="'No'"
+          [styleClass]="'my-confirm-dialog'"></p-confirmDialog>
+      </div>
+
+      <!--BOTONES-->
+      <div class="grid grid-nogutter justify-content-between"
+        style="display: flex; justify-self: end; margin-right: 1.5rem; position: relative; top: -1.8rem; margin-bottom: -2rem;">
+
+        <p-button label="Regresar" (onClick)="prevPage()" icon="pi pi-angle-left"
+          styleClass="p-button-secondary"></p-button>
+        <div style="display: flex; align-items: center; margin-left: 1rem;">
+          <p-button label="Guardar" styleClass="p-button-help" icon="pi pi-save"
+            (onClick)="insertarRegistros()"></p-button>
+          <div style="margin-left: 1rem;"></div>
+          <p-button label="Siguiente" type="submit" icon="pi pi-angle-right" iconPos="right"
+            [disabled]="form.invalid"></p-button>
+
+        </div>
+      </div>
+
+    </form>
+  </p-card>
+</div>
