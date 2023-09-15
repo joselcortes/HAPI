@@ -4,7 +4,16 @@
   display: none;
 
 }
+.mitad-izq {
+  flex: 1; /* Toma el 50% del ancho del contenedor */
+  background-image: url("../../assets/img/backgroun2.png");
+}
+.mitad-der {
+  flex: 1;
+  background-color: #e73434;  /* Aquí pon el color del fondo que quieras para este lateral */
+}
 .container{
+    /* background-image: url("../../assets/img/backgroun2.png"); */
     position: relative;
     top: 10rem;
     width: 800px;
@@ -26,12 +35,19 @@
   }
 
   .contenedor-formulario{
+    display: flex;
+    justify-content: space-between;
 
+    /* flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    width: 100%;
+    margin: auto; */
 
-    position: absolute;
+    /* position: absolute;
     width: 400px;
     height: 600px;
-    left: 400px;
+    left: 400px; */
 
   }
 

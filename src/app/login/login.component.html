@@ -4,37 +4,40 @@
 </div> -->
 <p-toast></p-toast>
 <div class="container">
-  <img src="../../assets/img/logo-inicio.png" class="img">
+  <!-- <img src="../../assets/img/logo-inicio.png" class="img"> -->
   <!-- <img src="../../assets/img/icono-user.png" class="img" *ngIf="imgLogin"> -->
   <div class="contenedor-formulario" >
-    <div class="logo">
-      <img src="../../assets/img/icono-hapi.ico" class="img-logo">
-      <h1 class="title-logo">HAPI</h1>
-    </div>
-    <div class="form-content">
-      <form class="formulario" [formGroup]="form" (ngSubmit)="enviarDatos()">
-        <div class="contenedor-input">
-          <div class="ci1">
-            <input class="ic1" type="text" name="email" class="form-control" placeholder="Usuario" formControlName="email" required [(ngModel)]="email"
-              style="width: 300px; position: relative;">
-              <span style="color: red;" *ngIf="isValidField('email')">Ingrese usuario</span>
-            <!-- <input name="email" type="email" placeholder="Email" required class="i1" [(ngModel)]="email"> -->
-          </div>
-          <div class="ci2">
-            <input class="ic2" type="password" name="email" class="form-control" placeholder="Contraseña" formControlName="password" required [(ngModel)]="contrasena"
-              style="width: 300px; position: relative; top: 10px;">
-              <span style="color: red; top: 10px; position: relative;" *ngIf="isValidField('password')">Ingrese contraseña</span>
+    <div class="mitad-izq">asdasd</div>
+    <div class="mitad-der">
+      <div class="logo">
+        <img src="../../assets/img/icono-hapi.ico" class="img-logo">
+        <h1 class="title-logo">HAPI</h1>
+      </div>
+      <div class="logo-pie">
+        <img src="../../assets/img/logo-hospital.png" class="img-pie">
+        <p class="pie-pagina">&copy; 2023 Unidad de Desarrollo de Software - Departamento TIC</p>
+      </div>
+      <div class="form-content">
+        <form class="formulario" [formGroup]="form" (ngSubmit)="enviarDatos()">
+          <div class="contenedor-input">
+            <div class="ci1">
+              <input class="ic1" type="text" name="email" class="form-control" placeholder="Usuario" formControlName="email" required [(ngModel)]="email"
+                style="width: 300px; position: relative;">
+                <span style="color: red;" *ngIf="isValidField('email')">Ingrese usuario</span>
+              <!-- <input name="email" type="email" placeholder="Email" required class="i1" [(ngModel)]="email"> -->
+            </div>
+            <div class="ci2">
+              <input class="ic2" type="password" name="email" class="form-control" placeholder="Contraseña" formControlName="password" required [(ngModel)]="contrasena"
+                style="width: 300px; position: relative; top: 10px;">
+                <span style="color: red; top: 10px; position: relative;" *ngIf="isValidField('password')">Ingrese contraseña</span>
 
+            </div>
+            <div class="contenedor-button" style="position: relative; top: 1rem;">
+              <button type="submit" class="button" >Entrar</button>
+            </div>
           </div>
-          <div class="contenedor-button" style="position: relative; top: 1rem;">
-            <button type="submit" class="button" >Entrar</button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="logo-pie">
-      <img src="../../assets/img/logo-hospital.png" class="img-pie">
-      <p class="pie-pagina">&copy; 2023 Unidad de Desarrollo de Software - Departamento TIC</p>
+        </form>
+      </div>
     </div>
   </div>
 </div>
