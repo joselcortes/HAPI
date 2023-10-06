@@ -35,20 +35,25 @@ export class UsuarioService {
 
 
 
-  actualizarUsuario(body: crearUsuario): Observable<any> {
+  actualizarUsuario(body: crearUsuario, id?:number): Observable<any> {
+    let idUsuario;
+    if(id){
+      idUsuario = id
+    }else{
+      idUsuario = localStorage.getItem('idProfesionalSalud')
+    }
 
-     const idUsuario = localStorage.getItem('idProfesionalSalud')
     const data = {
       rutProfesional: body.rutProfesional,
       nombreProfesional: body.nombreProfesional,
       contrasenaProfesional: body.contrasenaProfesional,
       cargoProfesional: body.cargoProfesional,
       rolProfesional: body.rolProfesional,
-      centroProfesional: body.centroProfesional
+      centroProfesional: body.centroProfesional,
+      estadoProfesional: body.estadoProfesional,
     }
     return this.http.post(`${this.url}/actualizar/${idUsuario}`, data);
   }
-
 
   listarUsuario(nombreCentro: string) {
     return this.http.get(this.url.concat(`/listar`));

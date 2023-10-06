@@ -20,7 +20,7 @@ export class ValidacionesService{
   }
 
   validartoken(token:string | null){
-    if(!token && token == null){
+    if(!token || token == null){
       return false;
     }
     return true;

@@ -33,6 +33,7 @@ const routes: Routes = [
       },
       {
         path: 'paciente',
+        canActivate: [VigilanteHapiGuard],
         component: TablaComponent,
         children: [
           {
@@ -59,6 +60,7 @@ const routes: Routes = [
       },
       {
         path: 'consulta/:rut',
+        canActivate: [VigilanteHapiGuard],
         component: EpisodiosComponent,
         children: [
           {
@@ -89,6 +91,7 @@ const routes: Routes = [
       },
       {
         path: 'usuario',
+        canActivate: [VigilanteHapiGuard],
         component: UsuarioComponent,
         children: [
           {
@@ -104,6 +107,7 @@ const routes: Routes = [
       },
       {
         path: 'centro',
+        canActivate: [VigilanteHapiGuard],
         component: CentrosSaludComponent,
         children: [
           {

@@ -5,6 +5,7 @@ export interface Usuarios{
   cargo_profesional_salud: string,
   roles:string,
   nombre_centro_salud:string,
+  estado: number,
 }
 export interface Usuarios1{
 
@@ -20,13 +21,14 @@ export interface Usuarios1{
 
 
 export interface crearUsuario{
-
+  id_profesional_salud: number,
   rutProfesional: string,
   nombreProfesional: string,
   contrasenaProfesional:string,
   cargoProfesional:string,
   centroProfesional:string,
   rolProfesional:string,
+  estadoProfesional: string,
 
 }
 

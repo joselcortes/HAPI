@@ -103,20 +103,25 @@ export class CentrosSaludComponent implements OnInit {
 
   //TODO: Crear una funcion para pedir la imagen y darle como parametro la url que se encuentra en el backend
   // esta funcion hay que llamarla en el listar para poder pasar el parametro
-  async obtenerImagen(ruta: string, index: number){
-    let urlImg: any;
-    const promesaServicio = new Promise((resolve, reject) => {
-      this.centrosService.mostrarImagen(ruta).subscribe ((res:any) => {
-        //Transforma la imagen en una url
-          const img = URL.createObjectURL(res)
-          resolve(img)
-      })
+  obtenerImagen(ruta: string, index: number){
+
+    this.centrosService.mostrarImagen(ruta).subscribe((res:any) => {
+      this.centros[index].img = URL.createObjectURL(res);
     })
 
-    const resp = await promesaServicio;
-    urlImg = resp;
+    // let urlImg: any;
+    // const promesaServicio = new Promise((resolve, reject) => {
+    //   this.centrosService.mostrarImagen(ruta).subscribe ((res:any) => {
+    //     //Transforma la imagen en una url
+    //     const img = URL.createObjectURL(res);
+    //     resolve(img);
 
-    this.centros[index].img = urlImg;
+    //   })
+    // })
+
+    // const resp = await promesaServicio;
+    // urlImg = resp;
+    // this.centros[index].img = urlImg;
 
   }
 

@@ -13,8 +13,11 @@ import { LoginService } from 'src/app/servicios/login.service';
 export class UsuarioComponent implements OnInit {
 
   public usuarios!: Array<Usuarios>;
+  public datosUsuarios!: any;
   public data!: Array<any>;
   public visible!: boolean;
+  public visibleUpdate!: boolean;
+
   dataModel!: MenuItem[];
 
   //ELEMENTOS PARA FILTRAR LOS DATOS DE LA TABLA
@@ -36,6 +39,7 @@ export class UsuarioComponent implements OnInit {
         cargo_profesional_salud: '',
         roles: '',
         nombre_centro_salud: '',
+        estado: 0,
       },
     ];
   }
@@ -51,6 +55,7 @@ export class UsuarioComponent implements OnInit {
 
     this.usuarioService.listarUsuario('').subscribe((response:any)=>{
       this.usuarios = response;
+      console.log('usususioduaosiduoasiduoiueoiu',this.usuarios);
     });
 
     this.dataModel = [
@@ -110,11 +115,20 @@ export class UsuarioComponent implements OnInit {
     localStorage.removeItem('idProfesionalSalud');
     this.visible = true;
   }
+  showModalUpdate(rut: string){
+    this.visibleUpdate = true;
+    this.usuarioService.listarUsuarioPorRut(rut).subscribe( res => {
+      this.datosUsuarios = res;
+    })
+  }
 
   closeModal() {
     this.visible = false;
     localStorage.removeItem('profesionalSaludEncontrado');
     localStorage.removeItem('idProfesionalSalud');
+  }
+  closeModalUpdate(){
+    this.visibleUpdate = false;
   }
 
   filtrarDatosPacientes() {

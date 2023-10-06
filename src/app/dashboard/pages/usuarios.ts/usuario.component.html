@@ -26,9 +26,11 @@
                 <tr>
                   <th style="width:20%; background-color: #01448c1c;">RUN</th>
                   <th style="width:24%; background-color: #01448c1c;">NOMBRE USUARIO</th>
-                  <th style="width:20%; background-color: #01448c1c;">CARGO</th>
+                  <th style="width:25%; background-color: #01448c1c;">CARGO</th>
                   <th style="width:20%; background-color: #01448c1c;">ROL</th>
-                  <th style="width:16%; background-color: #01448c1c;"></th>
+                  <th style="width:20%; background-color: #01448c1c;">ESTADO</th>
+                  <th style="width:10%; background-color: #01448c1c;"></th>
+                  <th style="width:10%; background-color: #01448c1c;"></th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-usuarios>
@@ -37,15 +39,20 @@
                   <td>{{ usuarios.nombre_usuario }}</td>
                   <td>{{ usuarios.cargo_profesional_salud }}</td>
                   <td>{{ usuarios.roles }}</td>
+                  <td>{{ usuarios.estado === 1 ? 'ACTIVO': usuarios.estado === 2 ? 'INACTIVO' : 'SIN DATOS'}}</td>
                   <td>
-
-                    <button pbutton="" pripple="" type="button" icon="pi pi-user" (click)="eliminarUsuario(usuarios.id_profesional_salud)" style="position: relative; left: 0.5rem;"
+                    <button pbutton="" pripple="" type="button" icon="pi pi-user" (click)="eliminarUsuario(usuarios.id_profesional_salud)" style="position: relative;"
                       class="p-element p-ripple p-button-rounded p-button-info p-button-outlined p-button p-component p-button-icon-only">
                       <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
                       <span class="p-ink"></span>
                     </button>
-
-
+                  </td>
+                  <td>
+                    <button pbutton="" pripple="" type="button" icon="pi pi-user" (click)="showModalUpdate(usuarios.rut_profesional_salud)" style="position: relative;"
+                      class="p-element p-ripple p-button-rounded p-button-info p-button-outlined p-button p-component p-button-icon-only">
+                      <span class="p-button-icon pi pi-file-edit" aria-hidden="true"></span>
+                      <span class="p-ink"></span>
+                    </button>
                   </td>
                 </tr>
               </ng-template>
@@ -56,12 +63,24 @@
     </div>
   </div>
 
+
   <div style="resize: none;">
     <p-dialog header="" [(visible)]="visible" [draggable]="false" (onHide)="borrar()"
       [style]="{ 'max-width': '60vw', 'width': '50vw' , 'max-height': '35vw', 'height':'35vw' }">
       <div >
         <div>
-          <router-outlet preserveQueryParams></router-outlet>
+          <app-ingresarUsuario></app-ingresarUsuario>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+
+  <div *ngIf="datosUsuarios" style="resize: none;">
+    <p-dialog header="" [(visible)]="visibleUpdate" [draggable]="false" (onHide)="borrar()"
+      [style]="{ 'max-width': '60vw', 'width': '50vw' , 'max-height': '35vw', 'height':'35vw' }">
+      <div >
+        <div>
+          <app-actualizar-usuario [consultaUsuario]="datosUsuarios"></app-actualizar-usuario>
         </div>
       </div>
     </p-dialog>

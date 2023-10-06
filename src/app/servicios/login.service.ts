@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { env } from 'src/environments/environments';
 import { Login } from '../dashboard/interfaces/login';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 type Usuario = {
   id_profesional_salud:number
@@ -39,7 +40,7 @@ export class LoginService {
 
   dataUsuario$ = this.dataUsuario.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
     this.url = `${env.url}/sesion`;
     this.headersToken = new HttpHeaders();
 
@@ -62,7 +63,6 @@ export class LoginService {
   }
 
   mandarToken(token: string | null) {
-
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -75,11 +75,35 @@ export class LoginService {
     });
   }
 
+
+  //MI LOGIN
   enviarDatosLogin(body:Login): Observable<any>{
     const data = {
       email: body.email,
       password: body.password
     }
     return this.http.post(`${env.url}/login/verificar-usuario`, data)
+  }
+
+  isAuthentucated(){
+    const token = localStorage.getItem('token');
+    if(!token){
+      return false;
+    }
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  verificarToken(token: string | null){
+    if(!token){
+      localStorage.removeItem('token');
+      return of(false);
+    }
+    const headers = new HttpHeaders({
+      Authorization: `${token}`,
+      // token: `Bearer ${token}`,
+      'Content-type': 'applicarion/json',
+    });
+
+    return this.http.get(`${env.url}/login/verificar-token`, {headers} )
   }
 }

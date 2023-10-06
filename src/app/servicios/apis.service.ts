@@ -11,22 +11,22 @@ import { Fonasa } from '../dashboard/interfaces/apis';
 export class DatosUsuariosService {
 
   constructor( private http: HttpClient ) { }
-  private urlTest : string = "https://api-pacientes.netcat.cl";
+  private urlTest : string = "https://apifenix.hospitaldeovalle.cl";
 
   obtenerPacienteAPI(termino: string): Observable<any> {
     const authHeaders = new HttpHeaders({
       "Content-Type": "application/json",
       "Authorization": "Basic " + btoa("admin:Cb7A506a"),
-      "Access-Control-Allow-Origin": `${this.urlTest}/pacientes/buscar`,
+      "Access-Control-Allow-Origin": `${this.urlTest}/api/paciente`,
       "Access-Control-Allow-Credentials": "true"
     });
 
-    const url = `${this.urlTest}/pacientes/buscar/${termino}`;
+    const url = `${this.urlTest}/api/paciente/${termino}`;
     const body = {
       "termino": termino,
     };
 
-    return this.http.post(url, body, { headers: authHeaders })
+    return this.http.get(url, { headers: authHeaders })
       .pipe(
         catchError(error => {
           console.log('Error api');

@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
     private router:Router,
     private toast: MessageService,
     private fb: FormBuilder,
-    private messageService: MessageService,
-
   ){
 
     this.form = this.fb.group({
@@ -54,13 +52,13 @@ export class LoginComponent implements OnInit {
 
  async enviarCredenciales(){
     this.loginService.getHeader({
-      emailUsuario: this.email,
-      contrasenaUsuario: this.contrasena,
+      emailUsuario: this.form.controls['email'].value,
+      contrasenaUsuario: this.form.controls['password'].value,
 
     }).subscribe({
       next: (response) => {
         this.authorization=response.headers.get("Authorization");
-        this.body = response.body;
+        // this.body = response.body;
         this.status = response.status;
         localStorage.setItem("token", this.authorization);
 
@@ -82,15 +80,43 @@ export class LoginComponent implements OnInit {
     return this.form.controls[field].errors && this.form.controls[field].touched
  }
 
- async enviarDatos(){
+  enviarDatos(){
     const formValue = this.form.value;
     if(this.form.invalid){
       this.form.markAllAsTouched()
       return
     }
-    this.loginService.enviarDatosLogin(formValue).subscribe((res:any) => {
-      console.log(res);
+
+    this.loginService.enviarDatosLogin(formValue).subscribe({
+      next:(response) => {
+          localStorage.setItem('token', response.token )
+          if(response.login){
+            this.router.navigate(["/inicio"]);
+          }else{
+            this.toast.add({ severity: 'error', summary: 'Error', detail: `${response.error}` });
+          }
+      },
+      error:(error) => {
+       this.toast.add({ severity: 'error', summary: 'Error', detail: `Problemas de conexión` });
+
+      },
+      complete(){}
     })
+
+    // this.loginService.enviarDatosLogin(formValue).subscribe((res:any) => {
+    //   console.log(res.login);
+    //   localStorage.setItem('token', res.token )
+    //   this.router.navigate(["/inicio"]);
+
+    //   // if(res.login){
+    //   //   this.loginService.verificarToken(res.token).subscribe((res) => {
+    //   //     this.router.navigate(["/inicio"]);
+    //   //     console.log(res);
+    //   //   })
+    //   // }else{
+    //   //   this.toast.add({ severity: 'error', summary: 'Error', detail: `${res.error}` });
+    //   // }
+    // })
  }
 
 }

@@ -32,6 +32,7 @@ export class Paso1Component implements OnInit {
    idFicha!: number;
    comprobacion: boolean = false;
    rutPaciente!:any;
+   validarRutSiguiente:boolean = false;
 
    constructor(
       private router: Router,
@@ -112,7 +113,11 @@ export class Paso1Component implements OnInit {
     return false
    }
    guardarInformacionPacienteFormulario1() {
-      if( this.validacionesCamposVacios() === true){
+    if (!this.validarRun(this.form.value.runPasaportePaciente)) {
+      this.toast.add({ severity: 'error', summary: 'Error', detail: 'RUN INGRESADO NO VÁLIDO' });
+      return;
+    }
+    if( this.validacionesCamposVacios() === true){
          const formValues = this.form.value;
          this.formularioService.setDataFormulario1(formValues);
          this.router.navigate(['paciente/identidad-genero']);
@@ -121,7 +126,6 @@ export class Paso1Component implements OnInit {
 
    ngOnInit() {
       this.agregarGuionSeparadorRut();
-
       //ASIGNA LOS VALORES A LOS INPUTS
       this.datos = this.formularioService.getDataFormulario1();
       if (this.datos != undefined) {
@@ -148,103 +152,110 @@ export class Paso1Component implements OnInit {
    }
 
    registrosBaseDeDatos() {
-      this.pacientesService.dataPacientePorRunTotal(this.form.value.runPasaportePaciente).subscribe(
-         (datos) => {
-            localStorage.setItem('usuarioEncontrado', 'true');
-            this.informacionPaciente = datos;
+    try {
+      this.pacientesService.dataPacientePorRunTotal(this.form.value.runPasaportePaciente).subscribe({
+        next: (datos) => {
+          localStorage.setItem('usuarioEncontrado', 'true');
+          this.informacionPaciente = datos;
 
-            localStorage.setItem("idFicha", this.informacionPaciente.ficha.id_ficha_tecnica);
+          localStorage.setItem("idFicha", this.informacionPaciente.ficha.id_ficha_tecnica);
 
-            this.historiaGenero = this.informacionPaciente.historiaGenero;
-            this.areaPsiquica = this.informacionPaciente.areaPsiquica;
-            this.historialDrogas = this.informacionPaciente.historialDrogas;
-            this.antecedentes = this.informacionPaciente.antecedentes;
-            this.ficha = this.informacionPaciente.ficha;
+          this.historiaGenero = this.informacionPaciente.historiaGenero;
+          this.areaPsiquica = this.informacionPaciente.areaPsiquica;
+          this.historialDrogas = this.informacionPaciente.historialDrogas;
+          this.antecedentes = this.informacionPaciente.antecedentes;
+          this.ficha = this.informacionPaciente.ficha;
 
-            this.form.controls['runPasaportePaciente'].setValue(this.informacionPaciente.paciente.rut_paciente);
-            this.form.controls['nombresPaciente'].setValue(this.informacionPaciente.paciente.nombre_paciente);
-            this.form.controls['apellidoPaternoPaciente'].setValue(this.informacionPaciente.paciente.apellido_paterno_paciente);
-            this.form.controls['apellidoMaternoPaciente'].setValue(this.informacionPaciente.paciente.apellido_materno_paciente);
-            this.form.controls['fechaNacimientoPaciente'].setValue(this.informacionPaciente.paciente.fecha_nacimiento_paciente?.slice(0, 10));
-            this.form.controls['nombreSocialPaciente'].setValue(this.informacionPaciente.paciente.nombre_social);
-            this.form.controls['pronombrePaciente'].setValue(this.informacionPaciente.paciente.pronombre);
-            this.form.controls['domicilioPaciente'].setValue(this.informacionPaciente.paciente.domicilio_paciente);
-            this.form.controls['numeroTelefonicoPaciente'].setValue(this.informacionPaciente.paciente.telefono_paciente);
-            this.form.controls['runPasaporteResponsable'].setValue(this.informacionPaciente.involucrado.rut_persona_involucrada);
-            this.form.controls['nombresResponsable'].setValue(this.informacionPaciente.involucrado.nombres_persona_involucrada);
-            this.form.controls['apellidoPaternoResponsable'].setValue(this.informacionPaciente.involucrado.apellido_paterno_persona_involucrada);
-            this.form.controls['apellidoMaternoResponsable'].setValue(this.informacionPaciente.involucrado.apellido_materno_persona_involucrada);
-            this.form.controls['fechaNacimientoResponsable'].setValue(this.informacionPaciente.involucrado.fecha_nacimiento_persona_involucrada?.slice(0, 10));
-            this.form.controls['domicilioResponsable'].setValue(this.informacionPaciente.involucrado.domicilio_persona_involucrada);
-            this.form.controls['numeroTelefonicoResponsable'].setValue(this.informacionPaciente.involucrado.telefono_persona_involucrada);
-            this.form.controls['runPasaporteAcompaniante'].setValue(this.informacionPaciente.acompanante.rut_persona_involucrada);
-            this.form.controls['nombresAcompaniante'].setValue(this.informacionPaciente.acompanante.nombres_persona_involucrada);
-            this.form.controls['apellidoPaternoAcompaniante'].setValue(this.informacionPaciente.acompanante.apellido_paterno_persona_involucrada);
-            this.form.controls['apellidoMaternoAcompaniante'].setValue(this.informacionPaciente.acompanante.apellido_materno_persona_involucrada);
-            this.form.controls['parentescoAcompaniante'].setValue(this.informacionPaciente.acompanante.parentesco_persona_involucrada);
-            this.form.controls['numeroTelefonicoAcompaniante'].setValue(this.informacionPaciente.acompanante.telefono_persona_involucrada);
-            //SE CALCULA LA EDAD EN RIGOR AL VALOR DEVUELTO DESDE LA DB
-            this.form.controls['edadPaciente'].setValue(this.calcularEdadPacienteBaseDato());
-            this.form.controls['edadResponsable'].setValue(this.calcularEdadResponsableBaseDato());
+          this.form.controls['runPasaportePaciente'].setValue(this.informacionPaciente.paciente.rut_paciente);
+          this.form.controls['nombresPaciente'].setValue(this.informacionPaciente.paciente.nombre_paciente);
+          this.form.controls['apellidoPaternoPaciente'].setValue(this.informacionPaciente.paciente.apellido_paterno_paciente);
+          this.form.controls['apellidoMaternoPaciente'].setValue(this.informacionPaciente.paciente.apellido_materno_paciente);
+          this.form.controls['fechaNacimientoPaciente'].setValue(this.informacionPaciente.paciente.fecha_nacimiento_paciente?.slice(0, 10));
+          this.form.controls['nombreSocialPaciente'].setValue(this.informacionPaciente.paciente.nombre_social);
+          this.form.controls['pronombrePaciente'].setValue(this.informacionPaciente.paciente.pronombre);
+          this.form.controls['domicilioPaciente'].setValue(this.informacionPaciente.paciente.domicilio_paciente);
+          this.form.controls['numeroTelefonicoPaciente'].setValue(this.informacionPaciente.paciente.telefono_paciente);
+          this.form.controls['runPasaporteResponsable'].setValue(this.informacionPaciente.involucrado.rut_persona_involucrada);
+          this.form.controls['nombresResponsable'].setValue(this.informacionPaciente.involucrado.nombres_persona_involucrada);
+          this.form.controls['apellidoPaternoResponsable'].setValue(this.informacionPaciente.involucrado.apellido_paterno_persona_involucrada);
+          this.form.controls['apellidoMaternoResponsable'].setValue(this.informacionPaciente.involucrado.apellido_materno_persona_involucrada);
+          this.form.controls['fechaNacimientoResponsable'].setValue(this.informacionPaciente.involucrado.fecha_nacimiento_persona_involucrada?.slice(0, 10));
+          this.form.controls['domicilioResponsable'].setValue(this.informacionPaciente.involucrado.domicilio_persona_involucrada);
+          this.form.controls['numeroTelefonicoResponsable'].setValue(this.informacionPaciente.involucrado.telefono_persona_involucrada);
+          this.form.controls['runPasaporteAcompaniante'].setValue(this.informacionPaciente.acompanante.rut_persona_involucrada);
+          this.form.controls['nombresAcompaniante'].setValue(this.informacionPaciente.acompanante.nombres_persona_involucrada);
+          this.form.controls['apellidoPaternoAcompaniante'].setValue(this.informacionPaciente.acompanante.apellido_paterno_persona_involucrada);
+          this.form.controls['apellidoMaternoAcompaniante'].setValue(this.informacionPaciente.acompanante.apellido_materno_persona_involucrada);
+          this.form.controls['parentescoAcompaniante'].setValue(this.informacionPaciente.acompanante.parentesco_persona_involucrada);
+          this.form.controls['numeroTelefonicoAcompaniante'].setValue(this.informacionPaciente.acompanante.telefono_persona_involucrada);
+          //SE CALCULA LA EDAD EN RIGOR AL VALOR DEVUELTO DESDE LA DB
+          this.form.controls['edadPaciente'].setValue(this.calcularEdadPacienteBaseDato());
+          this.form.controls['edadResponsable'].setValue(this.calcularEdadResponsableBaseDato());
 
-            /*SE ASIGNAN VALORES EN EL LOCALSTORAGE, PARA INDICAR QUE EL USUARIO SE ENCUENTRA
-            Y QUE LOS CAMPOS DE LAS OTRAS VISTAS TAMBIEN SE RELLENEN*/
-            this.formularioService.setDataFormulario1(this.form.value);
-            localStorage.setItem('usuarioEncontrado', 'true');
-            localStorage.setItem('rutPaciente', `${this.form.value.runPasaportePaciente}`)
-            localStorage.setItem('paso1', 'true');
-            localStorage.setItem('paso2', 'true');
-            localStorage.setItem('paso3', 'true');
-            localStorage.setItem('paso4', 'true');
+          /*SE ASIGNAN VALORES EN EL LOCALSTORAGE, PARA INDICAR QUE EL USUARIO SE ENCUENTRA
+          Y QUE LOS CAMPOS DE LAS OTRAS VISTAS TAMBIEN SE RELLENEN*/
+          this.formularioService.setDataFormulario1(this.form.value);
+          localStorage.setItem('usuarioEncontrado', 'true');
+          localStorage.setItem('rutPaciente', `${this.form.value.runPasaportePaciente}`)
+          localStorage.setItem('paso1', 'true');
+          localStorage.setItem('paso2', 'true');
+          localStorage.setItem('paso3', 'true');
+          localStorage.setItem('paso4', 'true');
 
-            /*SE ASIGNAN DE INMEDIATO LOS DATOS DE LAS OTRAS VISTAS DEL FORMULARIO POR SI SE QUIERE GUARDAR DESDE AQUI*/
-            const datosForm2: Formulario2Datos = {};
-            datosForm2.generoSeleccionado = this.historiaGenero.identidad_genero;
-            datosForm2.orientacionSexualSeleccionada = this.historiaGenero.orientacion_sexual;
-            datosForm2.inicioTransicion = this.historiaGenero.inicio_transicion_sexual;
-            datosForm2.tiempoLatencia = this.historiaGenero.tiempo_latencia;
-            datosForm2.valorRangoAutopercepción = this.historiaGenero.autopercepcion;
-            datosForm2.usoBinder = this.informacionPaciente.dataPrenda[0].fk_prenda_disconformidad !== null ? true : false;
-            datosForm2.usoTucking = this.informacionPaciente.dataPrenda[1].fk_prenda_disconformidad !== null ? true : false;
-            datosForm2.usoPacking = this.informacionPaciente.dataPrenda[2].fk_prenda_disconformidad !== null ? true : false;
-            datosForm2.usoOtro = this.informacionPaciente.dataPrenda[3].fk_prenda_disconformidad !== null ? true : false;
-            datosForm2.usoNinguno = this.informacionPaciente.dataPrenda[4].fk_prenda_disconformidad !== null ? true : false;
-            datosForm2.apoyoFamiliar = this.historiaGenero.apoyo_nucleo_familiar;
-            datosForm2.textoElementosDisforia = this.historiaGenero.detalles_diforia;
-            datosForm2.checkHabilitarCampoDisforia = this.historiaGenero.presencia_disforia;
-            this.paso2formulario.setDataFormulario2(datosForm2);
+          /*SE ASIGNAN DE INMEDIATO LOS DATOS DE LAS OTRAS VISTAS DEL FORMULARIO POR SI SE QUIERE GUARDAR DESDE AQUI*/
+          const datosForm2: Formulario2Datos = {};
+          datosForm2.generoSeleccionado = this.historiaGenero.identidad_genero;
+          datosForm2.orientacionSexualSeleccionada = this.historiaGenero.orientacion_sexual;
+          datosForm2.inicioTransicion = this.historiaGenero.inicio_transicion_sexual;
+          datosForm2.tiempoLatencia = this.historiaGenero.tiempo_latencia;
+          datosForm2.valorRangoAutopercepción = this.historiaGenero.autopercepcion;
+          datosForm2.usoBinder = this.informacionPaciente.dataPrenda[0].fk_prenda_disconformidad !== null ? true : false;
+          datosForm2.usoTucking = this.informacionPaciente.dataPrenda[1].fk_prenda_disconformidad !== null ? true : false;
+          datosForm2.usoPacking = this.informacionPaciente.dataPrenda[2].fk_prenda_disconformidad !== null ? true : false;
+          datosForm2.usoOtro = this.informacionPaciente.dataPrenda[3].fk_prenda_disconformidad !== null ? true : false;
+          datosForm2.usoNinguno = this.informacionPaciente.dataPrenda[4].fk_prenda_disconformidad !== null ? true : false;
+          datosForm2.apoyoFamiliar = this.historiaGenero.apoyo_nucleo_familiar;
+          datosForm2.textoElementosDisforia = this.historiaGenero.detalles_diforia;
+          datosForm2.checkHabilitarCampoDisforia = this.historiaGenero.presencia_disforia;
+          this.paso2formulario.setDataFormulario2(datosForm2);
 
-            const datosForm3: Formulario3Datos = {};
-            datosForm3.textoFarmacos = this.areaPsiquica.detalles_farmacos;
-            datosForm3.checkHabilitarCampoFarmaco = this.areaPsiquica.utilizacion_farmaco;
-            datosForm3.textoApoyoEscolaridad = this.ficha.detalles_apoyo_es;
-            datosForm3.checkHabilitarCampoApoyoEscolaridad = this.ficha.apoyo_escolar;
-            datosForm3.textoDrogas = this.historialDrogas.detalles_uso_droga;
-            datosForm3.checkHabilitarCampoDrogas = this.historialDrogas.uso_droga;
-            datosForm3.alimentacionSeleccionada = this.informacionPaciente.habitosAlimenticios.detalle_habito_alimenticio;
-            datosForm3.controlEquipoSaludMental = this.areaPsiquica.control_equipo_salud_mental;
-            datosForm3.psicoterapia = this.areaPsiquica.psicoterapia
-            datosForm3.evaluacionPsiquiatrica = this.areaPsiquica.evaluacion_psiquica
-            datosForm3.diagnosticosPsiquiatricos = this.areaPsiquica.diagnostico_psiquiatrico
-            this.paso3formulario.setDataFormulario3(datosForm3);
+          const datosForm3: Formulario3Datos = {};
+          datosForm3.textoFarmacos = this.areaPsiquica.detalles_farmacos;
+          datosForm3.checkHabilitarCampoFarmaco = this.areaPsiquica.utilizacion_farmaco;
+          datosForm3.textoApoyoEscolaridad = this.ficha.detalles_apoyo_es;
+          datosForm3.checkHabilitarCampoApoyoEscolaridad = this.ficha.apoyo_escolar;
+          datosForm3.textoDrogas = this.historialDrogas.detalles_uso_droga;
+          datosForm3.checkHabilitarCampoDrogas = this.historialDrogas.uso_droga;
+          datosForm3.alimentacionSeleccionada = this.informacionPaciente.habitosAlimenticios.detalle_habito_alimenticio;
+          datosForm3.controlEquipoSaludMental = this.areaPsiquica.control_equipo_salud_mental;
+          datosForm3.psicoterapia = this.areaPsiquica.psicoterapia
+          datosForm3.evaluacionPsiquiatrica = this.areaPsiquica.evaluacion_psiquica
+          datosForm3.diagnosticosPsiquiatricos = this.areaPsiquica.diagnostico_psiquiatrico
+          this.paso3formulario.setDataFormulario3(datosForm3);
 
-            const datosForm4: Formulario4Datos = {};
-            datosForm4.textoAntecedentesPerinatales = this.antecedentes.detalles_antecedentes_perinatales;
-            datosForm4.textoAntecedentesMorbidosHospitalizaciones = this.antecedentes.detalles_antecedentes_hospitalizaciones;
-            datosForm4.textoAntecedentesQuirurgicos = this.antecedentes.detalles_antecedentes_quirurgicos;
-            datosForm4.textoAlergiasFocos = this.antecedentes.detalles_antecedentes_alergicos;
-            datosForm4.textoInmunizacionesSegunPNI = this.antecedentes.detalles_antecedentes_pni;
-            datosForm4.textoFuncionalidadGenital = this.antecedentes.detalles_funcionalidad_genital;
-            datosForm4.textoAntecedentesFamiliares = this.antecedentes.detalles_antecedentes_familia;
-            datosForm4.textoJudializacion = this.ficha.detalles_judicializacion;
-            datosForm4.checkHabilitarJudializacion = this.ficha.judicializacion;
-            this.paso4formulario.setDataFormulario4(datosForm4);
-         },
-         (error) => {
-            // CONSULTA LA API SI EL USUARIO NO ESTA REGISTRADO
-            this.consultaApiPaciente();
-         }
-      );
+          const datosForm4: Formulario4Datos = {};
+          datosForm4.textoAntecedentesPerinatales = this.antecedentes.detalles_antecedentes_perinatales;
+          datosForm4.textoAntecedentesMorbidosHospitalizaciones = this.antecedentes.detalles_antecedentes_hospitalizaciones;
+          datosForm4.textoAntecedentesQuirurgicos = this.antecedentes.detalles_antecedentes_quirurgicos;
+          datosForm4.textoAlergiasFocos = this.antecedentes.detalles_antecedentes_alergicos;
+          datosForm4.textoInmunizacionesSegunPNI = this.antecedentes.detalles_antecedentes_pni;
+          datosForm4.textoFuncionalidadGenital = this.antecedentes.detalles_funcionalidad_genital;
+          datosForm4.textoAntecedentesFamiliares = this.antecedentes.detalles_antecedentes_familia;
+          datosForm4.textoJudializacion = this.ficha.detalles_judicializacion;
+          datosForm4.checkHabilitarJudializacion = this.ficha.judicializacion;
+          this.paso4formulario.setDataFormulario4(datosForm4);
+       },
+       error:(error) => {
+         console.log('errrrrr',error);
+          // CONSULTA LA API SI EL USUARIO NO ESTA REGISTRADO
+          this.consultaApiPaciente();
+       },
+       complete(){}
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
    }
 
    async consultaApiPaciente() {
@@ -579,6 +590,10 @@ export class Paso1Component implements OnInit {
    }
 
    insertarRegistros() {
+    if (!this.validarRun(this.form.value.runPasaportePaciente)) {
+      this.toast.add({ severity: 'error', summary: 'Error', detail: 'RUN INGRESADO NO VÁLIDO' });
+      return;
+    }
       if(this.validacionesCamposVacios()){
         this.confirmationService.confirm({
           message: '¿Desea guardar la consulta?',
@@ -596,6 +611,7 @@ export class Paso1Component implements OnInit {
    guardar() {
       const formValues = this.form.value;
       this.formularioService.setDataFormulario1(formValues);
+
       if (this.form.value.runPasaportePaciente != '' && this.form.value.runPasaportePaciente != '-') {
          if (localStorage.getItem('usuarioEncontrado')) {
             this.composicionFormulario.composicionFormularioActualizar("").subscribe(

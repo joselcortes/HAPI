@@ -72,10 +72,10 @@ export class InicioComponent implements OnInit {
           let edad = item.fecha_nacimiento.slice(0,-14)
           edades.push(this.calcularEdadPacienteBaseDato(edad)!)
         }
-        const resmayor51 = edades.filter(elem => elem >= 51)
-        mayor50 = resmayor51.length
+        // const resmayor51 = edades.filter(elem => elem >= 51)
+        // mayor50 = resmayor51.length
 
-        const resmayor4150 = edades.filter(elem => elem >= 41 && elem <= 50);
+        const resmayor4150 = edades.filter(elem => elem >= 41);
         const mayor4150 = resmayor4150.length;
 
         const resmayor3140 = edades.filter(elem => elem >= 31 && elem <= 40);
@@ -105,11 +105,11 @@ export class InicioComponent implements OnInit {
         // console.log('mayor51',mayor51);
 
         this.basicData = {
-            labels: ['0-10', '11-15', '16-20', '21-30','31-40','41-50','51 - 70+'],
+            labels: ['0-10', '11-15', '16-20', '21-30','31-40','+'],
             datasets: [
                 {
-                    data: [mayor010,mayor1115, mayor1620, mayor2130,mayor3140,mayor4150,mayor50],
-                    backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)','rgba(120, 122, 255, 0.2)','rgba(152, 155, 255, 0.2)','rgba(11, 105, 255, 0.2)'],
+                    data: [mayor010,mayor1115, mayor1620, mayor2130,mayor3140,mayor4150],
+                    backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)','rgba(120, 122, 255, 0.2)','rgba(152, 155, 255, 0.2)'],
                     borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
                 }
             ]

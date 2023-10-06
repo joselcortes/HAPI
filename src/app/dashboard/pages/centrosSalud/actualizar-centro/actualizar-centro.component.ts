@@ -92,9 +92,7 @@ export class ActualizarCentroComponent implements OnInit{
      else if(this.form.value.comuna_centro_atencion === ''){
        this.toast.add({ severity: 'warn', summary: 'Alert', detail: 'Debe seleccionar una comuna' });
      }
-     else if(this.form.value.logo === ''){
-       this.toast.add({ severity: 'warn', summary: 'Alert', detail: 'Debe agregar una imagen' });
-     }else{
+     else{
        return true;
      }
      return false;
@@ -113,19 +111,22 @@ export class ActualizarCentroComponent implements OnInit{
   }
  }
 
- async obtenerImagen(ruta: string){
-  let urlImg: any;
-  const promesaServicio = new Promise((resolve, reject) => {
-    this.centrosSalud.mostrarImagen(ruta).subscribe ((res:any) => {
-      //Transforma la imagen en una url
-        const img = URL.createObjectURL(res)
-        resolve(img)
-    })
+ obtenerImagen(ruta: string){
+  this.centrosSalud.mostrarImagen(ruta).subscribe((res:any) => {
+    this.previsualizacion = URL.createObjectURL(res);
   })
+  // let urlImg: any;
+  // const promesaServicio = new Promise((resolve, reject) => {
+  //   this.centrosSalud.mostrarImagen(ruta).subscribe ((res:any) => {
+  //     //Transforma la imagen en una url
+  //       const img = URL.createObjectURL(res)
+  //       resolve(img)
+  //   })
+  // })
 
-  const resp = await promesaServicio;
-  urlImg = resp;
-  this.previsualizacion = urlImg
+  // const resp = await promesaServicio;
+  // urlImg = resp;
+  // this.previsualizacion = urlImg
 
 }
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { error } from 'console';
 import { CentrosSaludService } from 'src/app/servicios/centros.service';
 import { LoginService } from 'src/app/servicios/login.service';
+import { Subscription } from 'rxjs';
 
 type Usuario = {
   nombre_usuario: string;
@@ -21,24 +23,37 @@ export class ComponentesComponent {
   public usuario!:Usuario;
   public mostrarUl: boolean = false
   public imagen!: any;
+
   constructor(
     private loginService: LoginService,
     private centros: CentrosSaludService,
-    ){}
+    ){
 
+
+    }
     ngOnInit(){
-      this.loginService.dataUsuario$.subscribe(dataUser=>{
-        if(dataUser){
-          this.usuario = dataUser;
-          this.obtenerImagen(this.usuario.logo);
-      }else {
-        throw new Error("Usuario vacio")
+      const token = localStorage.getItem('token');
+      if(token){
+        try {
+          this.loginService.verificarToken(token).subscribe({
+            next: (res:any) => {
+                  console.log(res);
+                  this.usuario = res.usuario[0];
+                  console.log(this.usuario);
+                  this.obtenerImagen(this.usuario.logo);
+            },
+            error: (error) => {
+              console.log(error);
+            },
+            complete(){}
+          })
+        } catch (error) {
+
+          console.log(error);
+        }
       }
-    }, (err)=>{
-      console.log(err);
-      console.log("Error al cargar datos de usuario");
-    });
   }
+
 
   async obtenerImagen(ruta: string){
     try {
@@ -56,16 +71,14 @@ export class ComponentesComponent {
 
   }
 
-  async datosUsuario(){
-
-  }
-
-
   mostrarLista(){
     this.mostrarUl = !this.mostrarUl;
   }
   cerrarHapi(){
     localStorage.removeItem("token");
+    localStorage.removeItem("realizoClick");
+    localStorage.removeItem("limpiarValoresFormulario1");
+    localStorage.removeItem("idFicha");
   }
 
 }

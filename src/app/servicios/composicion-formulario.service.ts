@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
 import { PacientesService } from './datos.paciente.service';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { env } from 'src/environments/environments'
 import { Console } from 'console';
 
 @Injectable({
@@ -51,9 +52,14 @@ export class ComposicionFormularioService {
   idPrendas!: number;
 
   composicionFormularioIngresar(valor?:string, idFicha?:number): Observable<any> {
-    this.loginService.dataUsuario$.subscribe(result => {
-      this.idUsuario = result.id_profesional_salud;
-    });
+    const token = localStorage.getItem('token')
+    const partesToken = token!.split('.');
+    const payloadCodificado = partesToken[1];
+    const payloadCrudo = atob(payloadCodificado);
+    const payloadJSON = JSON.parse(payloadCrudo);
+
+
+    this.idUsuario = payloadJSON.id;
     const datosFormulario1 = this.paso1Formulario.getDataFormulario1();
     const datosFormulario2 = this.paso2Formulario.datosModificadosEnvioFormulario2();
     const datosFormulario3 = this.paso3Formulario.datosModificadosEnvioFormulario3();
@@ -216,9 +222,13 @@ prendasDisconformidad(
 
 
   composicionFormularioActualizar(valor?:string, idFicha?:number): Observable<any> {
-    this.loginService.dataUsuario$.subscribe(result => {
-      this.idUsuario = result.id_profesional_salud;
-    });
+    const token = localStorage.getItem('token')
+    const partesToken = token!.split('.');
+    const payloadCodificado = partesToken[1];
+    const payloadCrudo = atob(payloadCodificado);
+    const payloadJSON = JSON.parse(payloadCrudo);
+
+    this.idUsuario = payloadJSON.id;
 
     const datosFormulario1 = this.paso1Formulario.getDataFormulario1();
     const datosFormulario2 = this.paso2Formulario.datosModificadosEnvioFormulario2();

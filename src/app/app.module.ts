@@ -24,6 +24,8 @@ import { IngresarUsuarioComponent } from './dashboard/pages/usuarios.ts/ingresar
 import { CentrosSaludComponent } from './dashboard/pages/centrosSalud/centros-salud.component';
 import { IngresarCentroComponent } from './dashboard/pages/centrosSalud/ingresar-centro/ingresar-centro.component';
 import { ActualizarCentroComponent } from './dashboard/pages/centrosSalud/actualizar-centro/actualizar-centro.component';
+import { ActualizarUsuarioComponent } from './dashboard/pages/usuarios.ts/actualizar-usuario/actualizar-usuario.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -42,8 +44,14 @@ import { ActualizarCentroComponent } from './dashboard/pages/centrosSalud/actual
     CentrosSaludComponent,
     IngresarCentroComponent,
     ActualizarCentroComponent,
+    ActualizarUsuarioComponent,
   ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        // Configura las opciones según sea necesario
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

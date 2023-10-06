@@ -1,23 +1,35 @@
 
 .background{
-
   display: none;
 
 }
 .mitad-izq {
-  flex: 1; /* Toma el 50% del ancho del contenedor */
+  transition: all, 0.5;
+  width: 500px; /* Toma el 50% del ancho del contenedor */
   background-image: url("../../assets/img/backgroun2.png");
+  /* border-radius: 10px; */
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  box-shadow: -5px 0px 9px 3px rgba(0, 0, 0, 0.25);
+  /* -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.25);-moz-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.25);box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.25); */
 }
-.mitad-der {
+/* .mitad-der {
+  overflow: auto;
   flex: 1;
-  background-color: #e73434;  /* Aquí pon el color del fondo que quieras para este lateral */
-}
-.container{
+  background-color: #e73434;
+} */
+.containerr{
     /* background-image: url("../../assets/img/backgroun2.png"); */
+    transition-property: all;
+    transition-duration: 0.5s;
+    display: flex;
+    /* overflow:auto; */
     position: relative;
-    top: 10rem;
-    width: 800px;
-    height: 600px;
+    top: 4.5rem;
+    left: 24%;
+    width: 1000px;
+    height: 800px;
+    background-color: #f2eafd;
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.25);-moz-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.25);box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.25);
 
@@ -29,7 +41,7 @@
     position: absolute;
     left: -50px;
     top: 5rem;
-    width: 540px;
+    width: 400px;
     height: 430px;
     border-top-left-radius: 10px;
   }
@@ -55,7 +67,9 @@
 
 
     position: absolute;
-    width: 400px;
+    top: 10%;
+    right: 10%;
+    width: 300px;
     height: 200px;
     display: flex;
     justify-content: center;
@@ -66,16 +80,16 @@
 
     position: absolute;
     width: 100px;
-    right: 60px;
+    right: 100px;
     top: 50px;
-    right: 150px;
+    /* right: 150px; */
 
 
   }
   .title-logo{
 
     position: absolute;
-    color: rgb(23, 116, 204);
+    color: rgb(0, 0, 0);
     font-size: 50px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     bottom: -10px;
@@ -85,9 +99,10 @@
   .form-content{
 
     position: absolute;
-    width: 400px;
-    height: 200px;
-    top: 200px;
+    /* width: 400px;
+    height: 200px; */
+    right: 8%;
+    top: 40%;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -97,8 +112,7 @@
 
   .contenedor-input{
 
-
-    width: 340px;
+    width: 320px;
     height: 150px;
     display: flex;
     justify-content: center;
@@ -130,9 +144,10 @@
   .logo-pie{
 
     position: absolute;
-    width: 400px;
+    width: 300px;
     height: 200px;
-    bottom: 0px;
+    right: 10%;
+    bottom: 10%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -154,8 +169,13 @@
 
   @media (max-width: 1023px) {
 
-    .container{
-
+    .mitad-izq{
+      transition: all, 0.5;
+      visibility: hidden;
+    }
+    .containerr{
+      transition-property: all;
+      transition-duration: 0.5s;
       background-image: linear-gradient(to right top, #9670ed22, #9d63e36c, #a355d77a, #ab45ca72, #af32bd69, #bf30b372, #cb31a76e, #d5359d75, #e553977b, #f16f9689, #f88b9b94, #fca5a589);
       position: relative;
       top: 9rem;
@@ -184,8 +204,10 @@
 
     .logo{
 
+      top: 0%;
+      right: 3%;
       position: absolute;
-      width: 400px;
+      width: 300px;
       height: 200px;
       display: flex;
       justify-content: center;
@@ -196,7 +218,7 @@
 
       position: absolute;
       width: 80px;
-      left: 160px;
+      left: 80px;
       top: 80px;
       right: 150px;
 
@@ -209,6 +231,7 @@
       font-size: 30px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       bottom: -10px;
+      left: 80px;
 
     }
 
@@ -222,11 +245,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      left: 10px;
 
     }
 
     .contenedor-input{
-
 
       width: 340px;
       height: 150px;
@@ -234,6 +257,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+
 
     }
 
@@ -257,8 +281,8 @@
     }
     .logo-pie{
 
-
       position: absolute;
+      left: 2%;
       width: 400px;
       height: 40px;
       bottom: 0px;
