@@ -23,7 +23,7 @@
               currentPageReportTemplate="">
               <ng-template pTemplate="header">
                 <tr>
-                  <th style="width:20%; background-color: #01448c1c;">NOMBRE CENTRO</th>
+                  <th style="width:20%; background-color: #01448c1c;">NOMBRE HOSPITAL</th>
                   <th style="width:24%; background-color: #01448c1c;">COMUNA</th>
                   <th style="width:20%; background-color: #01448c1c;">LOGO</th>
                   <th style="width:4%; background-color: #01448c1c;"></th>
@@ -34,7 +34,7 @@
                 <tr >
                   <td>{{ centros.nombre_centro_salud }}</td>
                   <td>{{ centros.nombre_comuna }}</td>
-                  <td><p-image [src]="centros.img" alt="Image" width="90" height="50" [preview]="true"></p-image></td>
+                  <td><p-image [src]="centros.img" alt="Image" width="40" height="40" [preview]="true"></p-image></td>
                   <!-- <td><img class="imagen-logo" [src]="centros.img" alt=""></td> -->
                   <td>
                     <button pbutton="" pripple="" type="button" icon="pi pi-user" (click)="eliminarCentro(centros.id_centro_salud, centros.logo)" style="position: relative; left: 0.5rem;"

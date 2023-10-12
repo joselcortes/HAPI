@@ -60,7 +60,7 @@
               </a>
             </li>
             <li style="list-style-type: none;" *ngIf="usuario.roles === 'adminUser'">
-              <a (click)="mostrarLista()" style="text-decoration: none;">
+              <a class=""(click)="mostrarLista()" style="text-decoration: none; cursor: pointer;">
                 <span class="las la-laptop" style="color: #396aff; position: relative; top: 0.2rem;"></span>
                 <span>Administrador</span>
                 <ul *ngIf="mostrarUl" [hidden]="false">
@@ -107,6 +107,7 @@
           <div class="col-12 col-md-10 col-lg-8"
             style="display: flex; justify-content: center; align-items: center; min-height: 100vh; position: relative;left: -3.6rem; top: 0rem; ">
             <router-outlet></router-outlet>
+            <!-- <app-renovar-token *ngIf="renuevaToken"></app-renovar-token> -->
           </div>
         </div>
       </div>

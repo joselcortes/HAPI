@@ -210,7 +210,7 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover {
 }
 
 .logo-container {
-  background-color: #a1e3f7a2;
+  background-color: #ffffff;
   display: flex;
   position: absolute;
   height: 4.3rem;
@@ -226,6 +226,7 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover {
   width: 100%;
   object-fit: contain;
 }
+
 
 @media screen and (max-width: 645px) {
   /* .sidebar {

@@ -1,0 +1,9 @@
+body{
+  background-color: white;
+  display: flex;
+  text-align: center;
+  align-content: center;
+  width: 500px;
+  height: 500px;
+  margin: 10%, 10%, 10%, 10%;
+}

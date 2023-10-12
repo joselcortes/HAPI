@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { env } from 'src/environments/environments';
 import { Login } from '../dashboard/interfaces/login';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 type Usuario = {
   id_profesional_salud:number
@@ -24,6 +25,7 @@ type Usuario = {
 export class LoginService {
   private url: string;
   private headersToken: any;
+  // public state = signal({})
 
   public dataUsuario = new BehaviorSubject<Usuario>({
 
@@ -40,7 +42,7 @@ export class LoginService {
 
   dataUsuario$ = this.dataUsuario.asObservable();
 
-  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService, private router: Router) {
     this.url = `${env.url}/sesion`;
     this.headersToken = new HttpHeaders();
 
@@ -90,6 +92,28 @@ export class LoginService {
     if(!token){
       return false;
     }
+    this.verificarToken(token).subscribe({
+      next: (res:any) => {
+        // console.log('el token expiro',this.jwtHelper.isTokenExpired(token));
+
+        // console.log(res);
+        if(res.verificar === false){
+          console.log('el token expiro',this.jwtHelper.isTokenExpired(token));
+          if(this.jwtHelper.isTokenExpired(token) === true){
+            alert('El token expirto desea seguir?')
+          }
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+          return false
+        }else{
+          return true
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete(){}
+    })
     return !this.jwtHelper.isTokenExpired(token);
   }
 
@@ -106,4 +130,7 @@ export class LoginService {
 
     return this.http.get(`${env.url}/login/verificar-token`, {headers} )
   }
+
+
+  // renovarToken()
 }

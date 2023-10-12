@@ -26,6 +26,7 @@ import { IngresarCentroComponent } from './dashboard/pages/centrosSalud/ingresar
 import { ActualizarCentroComponent } from './dashboard/pages/centrosSalud/actualizar-centro/actualizar-centro.component';
 import { ActualizarUsuarioComponent } from './dashboard/pages/usuarios.ts/actualizar-usuario/actualizar-usuario.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { RenovarTokenComponent } from './renovar-token/renovar-token.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     IngresarCentroComponent,
     ActualizarCentroComponent,
     ActualizarUsuarioComponent,
+    RenovarTokenComponent,
   ],
   imports: [
     JwtModule.forRoot({

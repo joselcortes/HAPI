@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { error } from 'console';
 import { CentrosSaludService } from 'src/app/servicios/centros.service';
 import { LoginService } from 'src/app/servicios/login.service';
-import { Subscription } from 'rxjs';
+
 
 type Usuario = {
   nombre_usuario: string;
@@ -23,13 +22,15 @@ export class ComponentesComponent {
   public usuario!:Usuario;
   public mostrarUl: boolean = false
   public imagen!: any;
+  public renuevaToken: boolean = false;
 
   constructor(
     private loginService: LoginService,
     private centros: CentrosSaludService,
     ){
-
-
+      // setTimeout(() => {
+      //   this.renuevaToken = true;
+      // }, 5000);
     }
     ngOnInit(){
       const token = localStorage.getItem('token');
@@ -37,9 +38,7 @@ export class ComponentesComponent {
         try {
           this.loginService.verificarToken(token).subscribe({
             next: (res:any) => {
-                  console.log(res);
                   this.usuario = res.usuario[0];
-                  console.log(this.usuario);
                   this.obtenerImagen(this.usuario.logo);
             },
             error: (error) => {
@@ -52,8 +51,7 @@ export class ComponentesComponent {
           console.log(error);
         }
       }
-  }
-
+    }
 
   async obtenerImagen(ruta: string){
     try {

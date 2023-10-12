@@ -46,7 +46,6 @@ export class IngresarUsuarioComponent implements OnInit {
       this.agregarGuionSeparadorRut();
       this.centrosSalud.listarCentro().subscribe( res => {
         this.centros = res;
-        console.log(this.centros);
       })
    }
 
@@ -65,7 +64,6 @@ export class IngresarUsuarioComponent implements OnInit {
 
 
    actualizarRegistros(valor:any, id:any) {
-    console.log('el valor del formulaerio',valor);
     this.confirmationService.confirm({
        message: 'Ya se encuentra registrado un usuario con el rut ingresado, ¿Desea actualizar el usuario?',
        icon: 'pi pi-exclamation-triangle',

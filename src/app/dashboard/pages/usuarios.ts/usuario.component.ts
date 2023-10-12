@@ -55,7 +55,6 @@ export class UsuarioComponent implements OnInit {
 
     this.usuarioService.listarUsuario('').subscribe((response:any)=>{
       this.usuarios = response;
-      console.log('usususioduaosiduoasiduoiueoiu',this.usuarios);
     });
 
     this.dataModel = [
